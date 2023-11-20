@@ -11,6 +11,8 @@ const config: Config = {
   theme: {
     extend: {},
   },
-  plugins: [nextui()],
+  plugins: [
+    nextui()
+  ],
 }
 export default config
