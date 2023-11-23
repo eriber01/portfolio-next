@@ -6,11 +6,18 @@
 
   /* generals */
   .general-font-size {
-    font-size: 16px;
+    font-size: 14px;
+  }
+  .medium-font-size {
+    font-size: 12px;
+  }
+  .min-font-size {
+    font-size: 10px;
   }
   .secondary-font-color {
     color: #938D8D;
   }
+
   .transition-custom {
     @apply transition duration-1000 ease-out;
   }
@@ -22,6 +29,10 @@
 
   .me-hover {
     @apply w-7/12 md:w-[70%] xl:w-[50%];
+  }
+
+  .button-session {
+    
   }
 
   /* home  w-7/12 md:w-[70%] xl:w-[50%]*/

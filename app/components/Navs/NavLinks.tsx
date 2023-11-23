@@ -1,14 +1,26 @@
+'use client'
+import { useAppSelector } from "@/app/redux/hooks"
+import Link from "next/link";
+import styles from './style.module.css'
 
-const NavLinks = () => {
+export default function NavLinks() {
+
+  const { nav } = useAppSelector((state) => state.nav)
+  console.log(nav);
+
   return (
     <main className="md:w-3/12">
-      <div className="flex justify-between">
-        <span>About</span>
-        <span>Projects</span>
-        <span>Contact</span>
-      </div>
+      <nav>
+        <ul className="flex justify-between">
+          {
+            nav.map(item => (
+              <li key={item.id}>
+                <Link className={`${styles.links}`} href={`#${item.id}`}>{item.name}</Link>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
     </main>
   )
 }
-
-export default NavLinks

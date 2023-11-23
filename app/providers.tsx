@@ -1,6 +1,7 @@
 'use client'
-
 import { NextUIProvider } from "@nextui-org/react";
+import { Provider as ReduxProvider } from "react-redux";
+import { store } from "./redux/store";
 
 interface Props {
   children: React.ReactNode
@@ -8,8 +9,10 @@ interface Props {
 
 export function Providers({ children }: Props) {
   return (
-    <NextUIProvider>
-      {children}
-    </NextUIProvider>
+    <ReduxProvider store={store}>
+      <NextUIProvider>
+        {children}
+      </NextUIProvider>
+    </ReduxProvider>
   )
 }
