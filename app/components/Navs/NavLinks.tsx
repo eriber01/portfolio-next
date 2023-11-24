@@ -9,7 +9,7 @@ export default function NavLinks() {
   console.log(nav);
 
   return (
-    <main className="md:w-3/12">
+    <main className="md:w-4/12">
       <nav>
         <ul className="flex justify-between">
           {

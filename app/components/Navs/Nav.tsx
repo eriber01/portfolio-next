@@ -15,7 +15,7 @@ const Nav = () => {
       <Navbar
         maxWidth="full"
         isMenuOpen={isOpen}
-        className="bg-home p-0"
+        className="bg-home"
       >
 
         <NavbarContent className="md:hidden pr-3" justify="center">
@@ -29,7 +29,7 @@ const Nav = () => {
         <NavbarContent>
           <div className='hidden md:flex flex-col w-full'>
             <TopNav />
-            <div className='flex'>
+            <div className='flex justify-between bg-black'>
               <MeButton />
               <NavLinks />
               <SocialButtons />
