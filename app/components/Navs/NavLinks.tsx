@@ -6,7 +6,6 @@ import styles from './style.module.css'
 export default function NavLinks() {
 
   const { nav } = useAppSelector((state) => state.nav)
-  console.log(nav);
 
   return (
     <main className="md:w-4/12">

@@ -9,9 +9,11 @@ import { Projects } from "./components/Projects";
 
 export default function Home() {
   return (
-    <main className="scroll-smooth">
+    <main className="scroll-smooth bg-home">
       <Providers>
-        <Nav />
+        <div className="fixed top-0 w-full z-50">
+          <Nav />
+        </div>
         <HomePage />
         <About />
         <Projects />

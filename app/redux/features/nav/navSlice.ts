@@ -1,10 +1,11 @@
-import { createSlice,PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { Nav } from "@/app/interfaces";
 
 interface navState {
   nav: Nav[]
   navSelected?: Nav | null
+  isOpen: boolean
 }
 
 const initialState: navState = {
@@ -22,7 +23,8 @@ const initialState: navState = {
       name: 'Contact'
     }
   ],
-  navSelected: null
+  navSelected: null,
+  isOpen: false
 }
 
 export const navSlice = createSlice({
@@ -32,9 +34,13 @@ export const navSlice = createSlice({
     selectNav: (state, action: PayloadAction<Nav>) => {
       console.log(action.payload);
 
+    },
+    toggleNav: (state, action: PayloadAction<boolean>) => {
+      console.log({ state, action });
+      state.isOpen = action.payload
     }
   }
 })
 
-export const { selectNav } = navSlice.actions
+export const { selectNav, toggleNav } = navSlice.actions
 export default navSlice.reducer;
