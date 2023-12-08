@@ -8,7 +8,7 @@ import SocialButtons from './SocialButtons'
 
 const NavLinksMobile = ({ toggle }: { toggle: () => void }) => {
   const { nav } = useAppSelector((state) => state.nav)
-// bg-[#1d1730]
+
   return (
     <main>
       <NavbarMenu className='bg-transparent text-white flex flex-col w-full'>

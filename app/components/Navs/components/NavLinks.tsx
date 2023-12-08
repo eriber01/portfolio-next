@@ -1,11 +1,10 @@
-'use client'
-import { useAppSelector } from "@/app/redux/hooks"
 import Link from "next/link";
 import styles from '../style.module.css'
+import { nav } from "../data";
+
+
 
 export default function NavLinks() {
-
-  const { nav } = useAppSelector((state) => state.nav)
 
   return (
     <main className="md:w-4/12">
