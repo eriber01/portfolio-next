@@ -1,13 +1,12 @@
 import Link from 'next/link'
 
 import { NavbarMenu, NavbarMenuItem } from '@nextui-org/react'
-import { useAppSelector } from '@/app/redux/hooks'
 import { SessionButton } from './SessionButton'
 import styles from '../style.module.css'
 import SocialButtons from './SocialButtons'
+import { nav } from '../data'
 
 const NavLinksMobile = ({ toggle }: { toggle: () => void }) => {
-  const { nav } = useAppSelector((state) => state.nav)
 
   return (
     <main>

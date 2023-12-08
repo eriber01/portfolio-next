@@ -3,14 +3,17 @@ import { navLinks } from "./interface";
 export const nav: navLinks[] = [
   {
     id: 'about',
-    name: 'About'
+    name: 'About',
+    enabled: true
   },
   {
     id: 'projects',
-    name: 'Projects'
+    name: 'Projects',
+    enabled: true
   },
   {
     id: 'contact',
-    name: 'Contact'
+    name: 'Contact',
+    enabled: true
   }
 ]
