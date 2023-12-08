@@ -1,0 +1,36 @@
+.tech:nth-child(even) {
+  animation: techAnimationOne 3s infinite ease-in-out;
+}
+
+.tech:nth-child(odd){
+  animation: techAnimationTwo 3s infinite ease-in-out;
+}
+
+
+@keyframes techAnimationOne {
+  0% {
+    transform: translateY(2px);
+  }
+
+  50% {
+    transform: translateY(-2px);
+  }
+
+  100% {
+    transform: translateY(2px);
+  }
+}
+
+@keyframes techAnimationTwo {
+  0% {
+    transform: translateY(-2px);
+  }
+
+  50% {
+    transform: translateY(2px);
+  }
+
+  100% {
+    transform: translateY(-2px);
+  }
+}

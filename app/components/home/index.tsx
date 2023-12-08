@@ -1,12 +1,75 @@
 import React from 'react'
+import { ProfessionsLabel } from './components/ProfessionsLabel'
+import Image from 'next/image'
+import Link from 'next/link'
+import WhatsappSvgImg from './components/WhatsappSvgImg'
+import CvSvgImg from './components/CvSvgImg'
 
 export default function HomePage() {
   return (
     <div
-      className='h-screen w-full bg-home pt-20'
+      className='h-screen w-full bg-home pt-20 flex flex-col md:flex-row xl:flex-row justify-between items-center'
       id='home'
     >
-      Home
+      <div className='w-full items-center md:w-2/4 h-3/4 md:items-start xl:items-start md:pl-[10%] xl:pl-[10%]'>
+
+        <div className='h-3/4 flex flex-col items-center md:items-start justify-center'>
+          <ProfessionsLabel label={'Javascript Web Developer'} />
+
+          <div className='mt-10 mb-5 header-mobile-font-size flex flex-col text-center md:text-start md:items-start xl:items-start md:header-font-size xl:header-font-size'>
+            <p>If you are here.</p>
+            <p>You are looking for me.</p>
+          </div>
+
+          <div className='w-3/4 md:w-[80%] xl:w-[50%] flex flex-col text-center md:text-start md:items-start'>
+            <p className='medium-font-size md:big-font-size xl:big-font-size secondary-font-color'>
+              Don't think about anyone else, I'm the one, send me a message.
+            </p>
+          </div>
+        </div>
+
+        {/* 00D95F  273a2f*/}
+        <div className='w-full flex justify-center md:justify-start xl:justify-start'>
+          <div className='w-[50%] xl:w-[70%] md:w-[100%] flex flex-col md:flex-row xl:flex-row justify-between'>
+            <Link
+              href="https://api.whatsapp.com/send?phone=+18094339691&text=Hello"
+              target={'_blank'}
+              rel='noreferrer'
+              className='mb-2 md:mb-0 xl:mb-0 md:mr-3'
+            >
+              <div className='transition-custom py-2 px-5 flex items-center justify-center bg-[#00D95F] hover:bg-[#066B32] rounded-tl-2xl md:rounded-br-2xl rounded-tr-2xl md:rounded-tr-md rounded-md'>
+                <WhatsappSvgImg />
+
+                <span className='ml-3'>
+                  Whatsapp
+                </span>
+              </div>
+            </Link>
+
+            <Link
+              href="https://drive.google.com/file/d/1_3KiARp2QsYqf9aCwPddNFbOjyRAUrB2/view?usp=sharing"
+              target={'_blank'}
+              rel='noreferrer'
+            >
+              <div className='transition-custom py-2 px-5 flex items-center justify-center bg-[#9747FF] hover:bg-[#3b1b64] rounded-br-2xl md:rounded-br-md rounded-bl-2xl md:rounded-tr-2xl rounded-md'>
+                <CvSvgImg />
+                <span className='ml-3'>
+                  Download CV
+                </span>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className='hidden xl:w-[40%] xl:pr-8 h-3/4 xl:flex justify-center items-center'>
+        <Image
+          width={1000}
+          height={1000}
+          alt='Image home'
+          src={'/home.png'}
+          className='w-auto'
+        />
+      </div>
     </div>
   )
 }

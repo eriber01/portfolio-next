@@ -1,13 +1,13 @@
 'use client'
 import { Navbar, NavbarContent, NavbarMenuToggle } from '@nextui-org/react'
-import { MeButton } from './MeButton'
-import NavLinks from './NavLinks'
-import SocialButtons from './SocialButtons'
-import TopNav from './TopNav'
+import { MeButton } from './components/MeButton'
+import NavLinks from './components/NavLinks'
+import SocialButtons from './components/SocialButtons'
+import TopNav from './components/TopNav'
 
-import { SessionButton } from './SessionButton'
+import { SessionButton } from './components/SessionButton'
 
-import NavLinksMobile from './NavLinksMobile'
+import NavLinksMobile from './components/NavLinksMobile'
 import { useAppDispatch, useAppSelector } from '@/app/redux/hooks'
 import { toggleNav } from '@/app/redux/features/nav/navSlice'
 
@@ -18,11 +18,11 @@ const Nav = () => {
   const toggle = () => dispatch(toggleNav(!isOpen))
 // bg-[#1e1830]
   return (
-    <main className='bg-transparent general-font-size pb-4'>
+    <main className='bg-transparent general-font-size'>
       <Navbar
         maxWidth="full"
         isMenuOpen={isOpen}
-        className="bg-transparent"
+        className="bg-transparent shadow md:pb-1 xl:pb-1 pt-1"
       >
 
         <NavbarContent className="md:hidden pr-3" justify="center">
@@ -37,8 +37,8 @@ const Nav = () => {
 
         <NavbarContent>
           <div className='hidden md:flex flex-col w-full'>
-            <TopNav />
-            <div className='flex justify-between mt-2'>
+            {/* <TopNav /> */}
+            <div className='flex justify-between'>
               <MeButton />
               <NavLinks />
               <SocialButtons />
@@ -47,7 +47,6 @@ const Nav = () => {
             </div>
           </div>
         </NavbarContent>
-
 
       </Navbar>
     </main>

@@ -9,39 +9,64 @@ header ul {
 @layer components {
 
   /* generals */
+  .header-font-size {
+    font-size: 24px;
+  }
+
+  .header-mobile-font-size {
+    font-size: 20px;
+  }
+
+  .big-font-size {
+    font-size: 16px;
+  }
+
   .general-font-size {
     font-size: 14px;
   }
+
   .medium-font-size {
     font-size: 12px;
   }
+
   .min-font-size {
     font-size: 10px;
   }
+
   .secondary-font-color {
     color: #938D8D;
+  }
+
+  .green-label {
+    color: #58CB90;
+  }
+
+  .bg-principal-label {
+    background-color: #58CB90
   }
 
   .transition-custom {
     @apply transition duration-1000 ease-out;
   }
 
-  /* nav */
+  nav
   .lang-selected {
     @apply text-[#FF5C00] transition duration-400 ease-out;
   }
 
   .me-hover {
-    @apply w-7/12 md:w-[70%] xl:w-[50%];
+    @apply w-7/12 md:w-[80%] xl:w-[60%];
   }
 
-  .button-session {
-    
-  }
+  .button-session {}
 
-  /* home  w-7/12 md:w-[70%] xl:w-[50%]*/
+  /* home */
   .bg-home {
     background-color: #362B56;
+  }
+
+  .text-home-color {
+    color: #362B56;
   }
 
 }

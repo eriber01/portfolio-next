@@ -1,5 +1,5 @@
 import Link from "next/link"
-import style from './style.module.css'
+import style from '../style.module.css'
 
 const SocialButtons = () => {
   return (

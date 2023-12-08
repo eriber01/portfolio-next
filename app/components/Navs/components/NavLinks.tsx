@@ -1,7 +1,7 @@
 'use client'
 import { useAppSelector } from "@/app/redux/hooks"
 import Link from "next/link";
-import styles from './style.module.css'
+import styles from '../style.module.css'
 
 export default function NavLinks() {
 

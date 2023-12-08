@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { NavbarMenu, NavbarMenuItem } from '@nextui-org/react'
 import { useAppSelector } from '@/app/redux/hooks'
 import { SessionButton } from './SessionButton'
-import styles from './style.module.css'
+import styles from '../style.module.css'
 import SocialButtons from './SocialButtons'
 
 const NavLinksMobile = ({ toggle }: { toggle: () => void }) => {
