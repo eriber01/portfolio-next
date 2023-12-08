@@ -3,20 +3,15 @@ import { Navbar, NavbarContent, NavbarMenuToggle } from '@nextui-org/react'
 import { MeButton } from './components/MeButton'
 import NavLinks from './components/NavLinks'
 import SocialButtons from './components/SocialButtons'
-import TopNav from './components/TopNav'
-
 import { SessionButton } from './components/SessionButton'
-
 import NavLinksMobile from './components/NavLinksMobile'
-import { useAppDispatch, useAppSelector } from '@/app/redux/hooks'
-import { toggleNav } from '@/app/redux/features/nav/navSlice'
+import { useState } from 'react'
 
 const Nav = () => {
-  const { isOpen } = useAppSelector(state => state.nav)
-  const dispatch = useAppDispatch()
+  const [isOpen, toggle] = useState(false)
 
-  const toggle = () => dispatch(toggleNav(!isOpen))
-// bg-[#1e1830]
+  // const onToggle = () => toggle(!isOpen)
+
   return (
     <main className='bg-transparent general-font-size'>
       <Navbar
@@ -29,7 +24,7 @@ const Nav = () => {
           <NavbarMenuToggle
             aria-label={isOpen ? "Close" : 'Open'}
             className='md:hidden'
-            onClick={() => toggle()}
+            onClick={() => toggle(!isOpen)}
           />
         </NavbarContent>
 

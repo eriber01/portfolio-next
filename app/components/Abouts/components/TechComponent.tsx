@@ -4,8 +4,6 @@ import { CiShare1 } from "react-icons/ci";
 
 import TechImages from "./TechImages";
 import TechModal from "./TechModal";
-import { useAppDispatch } from "@/app/redux/hooks";
-// import { useAppSelector } from "@/app/redux/hooks";
 
 interface tech {
   tech: string
@@ -18,7 +16,6 @@ interface Props {
 }
 
 const TechComponent = ({ area, descriptions, tech }: Props) => {
-  const dispatch = useAppDispatch()
   const [isOpen, toggle] = useState(false)
   return (
     <div className="transition-custom hover:green-label hover:scale-105 hover:shadow-xl bg-gradient-to-tl from-[#130e2257] to-[#120C23] w-full pl-5 my-2 md:w-full xl:w-full h-full rounded">
