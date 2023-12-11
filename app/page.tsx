@@ -1,13 +1,11 @@
-import Link from "next/link";
-
-import { Button } from "@nextui-org/react";
 import { Providers } from "./providers";
 
-import Nav from "./components/Navs/Nav";
-import HomePage from "./components/home";
-import { Projects } from "./components/Projects";
-import { About } from "./components/Abouts";
-// import TopNav from "./components/Navs/top";
+import Nav from "./page/Navs/Nav";
+import HomePage from "./page/home";
+import { Projects } from "./page/Projects";
+import { About } from "./page/Abouts";
+import { Contact } from "./page/Contact";
+// import TopNav from "./page/Navs/top";
 
 export default function Home() {
   return (
@@ -17,8 +15,9 @@ export default function Home() {
           <Nav />
         </div>
         {/* <HomePage /> */}
-        <About />
-        {/* <Projects /> */}
+        {/* <About /> */}
+        <Projects />
+        <Contact />
       </Providers>
     </main>
   )

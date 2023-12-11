@@ -2,23 +2,17 @@
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Button } from '@nextui-org/react';
 import React from 'react'
 import TechImages from './TechImages';
-import { useAppSelector } from '@/app/redux/hooks';
+import { Tech } from '../interfaces';
 
-interface tech {
-  tech: string
-}
 
 interface Props {
   area: string
-  tech: tech[]
+  tech: Tech[]
   isOpen: boolean
+  toggle: (value: boolean) => void
 }
 
-const TechModal = ({ tech, area, isOpen }: Props) => {
-
-  // const { isOpenTech } = useAppSelector((state) => state.ui)
-  // console.log(isOpenTech);
-  
+const TechAreaModal = ({ tech, area, isOpen, toggle }: Props) => {
 
   return (
     <div className=''>
@@ -45,11 +39,13 @@ const TechModal = ({ tech, area, isOpen }: Props) => {
               with the latest frontend trends.
             </p>
 
-            <p className='my-3'>Tech:</p>
+            <p className='my-3'>Technologies:</p>
             <TechImages tech={tech} />
           </ModalBody>
           <ModalFooter>
-            <Button color='primary'>Close</Button>
+            <Button color='primary'
+              onClick={() => toggle(!isOpen)}
+            >Close</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
@@ -57,4 +53,4 @@ const TechModal = ({ tech, area, isOpen }: Props) => {
   )
 }
 
-export default TechModal
+export default TechAreaModal

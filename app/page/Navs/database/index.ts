@@ -1,4 +1,4 @@
-import { navLinks } from "./interface";
+import { navLinks } from "../interface";
 
 export const nav: navLinks[] = [
   {

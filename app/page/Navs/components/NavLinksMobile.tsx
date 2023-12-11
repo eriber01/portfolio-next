@@ -1,12 +1,17 @@
 import Link from 'next/link'
+import { nav } from "../database";
 
 import { NavbarMenu, NavbarMenuItem } from '@nextui-org/react'
 import { SessionButton } from './SessionButton'
 import styles from '../style.module.css'
 import SocialButtons from './SocialButtons'
-import { nav } from '../data'
+import { Dispatch, SetStateAction } from 'react';
 
-const NavLinksMobile = ({ toggle }: { toggle: () => void }) => {
+interface Props {
+  toggle: (value: boolean) => void
+}
+
+const NavLinksMobile = ({ toggle }: Props) => {
 
   return (
     <main>
@@ -15,7 +20,7 @@ const NavLinksMobile = ({ toggle }: { toggle: () => void }) => {
           <div>
             <NavbarMenuItem className='mt-2'>
               <Link
-                onClick={() => toggle()}
+                onClick={() => toggle(false)}
                 href={'#home'} className={`${styles.links}`}>
                 Home
               </Link>
@@ -27,7 +32,7 @@ const NavLinksMobile = ({ toggle }: { toggle: () => void }) => {
                   <NavbarMenuItem className='py-3'>
                     <li key={id}>
                       <Link
-                        onClick={() => toggle()}
+                        onClick={() => toggle(false)}
                         className={`${styles.links}`} key={id} href={`#${id}`}>
                         {name}
                       </Link>

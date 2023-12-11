@@ -3,29 +3,29 @@ import { useState } from "react";
 import { CiShare1 } from "react-icons/ci";
 
 import TechImages from "./TechImages";
-import TechModal from "./TechModal";
-import { useAppDispatch } from "@/app/redux/hooks";
-// import { useAppSelector } from "@/app/redux/hooks";
-
-interface tech {
-  tech: string
-}
+import TechAreaModal from "./TechAreaModal";
+import { getTech } from "../database";
+import { Tech } from "../interfaces";
 
 interface Props {
   area: string
   descriptions: string
-  tech: tech[]
 }
 
-const TechComponent = ({ area, descriptions, tech }: Props) => {
-  const dispatch = useAppDispatch()
+const TechComponent = ({ area, descriptions }: Props) => {
   const [isOpen, toggle] = useState(false)
+
+  const tech: Tech[] = getTech()
+
   return (
     <div className="transition-custom hover:green-label hover:scale-105 hover:shadow-xl bg-gradient-to-tl from-[#130e2257] to-[#120C23] w-full pl-5 my-2 md:w-full xl:w-full h-full rounded">
-      <TechModal tech={tech} area={area} isOpen={isOpen} />
+      <TechAreaModal toggle={toggle} tech={tech} area={area} isOpen={isOpen} />
       <div className="h-1/4">
         <div className="flex justify-between items-center mt-5">
-          <p>
+          <p
+            className="cursor-pointer"
+            onClick={() => toggle(true)}
+          >
             {area}
           </p>
           <div className="mr-3">

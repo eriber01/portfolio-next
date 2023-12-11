@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from '../style.module.css'
-import { nav } from "../data";
+import { nav } from "../database";
 
 export default function NavLinks() {
 
