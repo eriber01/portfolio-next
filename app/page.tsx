@@ -14,8 +14,8 @@ export default function Home() {
         <div className="fixed top-0 w-full z-50">
           <Nav />
         </div>
-        {/* <HomePage /> */}
-        {/* <About /> */}
+        <HomePage />
+        <About />
         <Projects />
         <Contact />
       </Providers>

@@ -7,39 +7,22 @@ import CardButtons from "./CardButtons"
 
 const CardProject = () => {
   return (
-    <div className="flex flex-col items-center bg-white w-[30%] shadow-2xl rounded-3xl">
-      <div>
-        <Image
-          alt="project image"
-          width={'500'}
-          height={'500'}
-          src={'https://res.cloudinary.com/eriber/image/upload/v1691249333/Portafolio/ProjectImage/Open_Jira_Next_App_ptj9cg.png'}
-          className="w-full rounded-3xl p-1"
-        />
+    <div className="w-[90%] md:w-[30%] h-[300px] bg-black my-4 rounded-xl flex flex-col justify-between items-center text-center">
+      <div className="w-3/4 pt-16">
+        <p className="big-font-size pb-5">
+          Nombre del Projecto
+        </p>
       </div>
-      <div className="w-[90%] mt-5">
-        {/* project name */}
-        <div>
-          <p className="text-black big-font-size font-semibold">
-            Primer Projecto
-          </p>
-        </div>
-        {/* descriptions */}
-        <div>
-          <p className="secondary-font-color mt-5 medium-font-size">
-            Introducing Smart Letters: My side project that blends
-            AI and emotions. ✉️✨ Create personalized letters with
-            Next.js, Tailwind CSS, and NextUI, using OpenAI's
-            artificial intelligence. Express yourself uniquely.
-            Join the beta now and get ready for more exciting features.
-          </p>
-        </div>
-        <div className="w-full flex justify-center mt-5">
-          <TechImages tech={getTech()} />
-        </div>
-        <div className="w-full flex justify-center">
-          <CardButtons />
-        </div>
+      <div className="w-[80%]">
+        <span className="medium-font-size">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Beatae fugiat odio possimus nemo, vel animi dolorem saepe.
+          {/* repudiandae adipisci error neque delectus labore eligendi
+          eaque. Sequi ab reiciendis quaerat! Minus? */}
+        </span>
+      </div>
+      <div className="flex justify-center pb-10 w-full">
+        <CardButtons />
       </div>
     </div>
   )

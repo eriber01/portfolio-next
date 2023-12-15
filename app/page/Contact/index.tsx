@@ -4,7 +4,7 @@ import Informations from "./components/Informations"
 
 export const Contact = () => {
   return (
-    <div className='h-screen mt-80 md:mt-0 xl:mt-0 bg-[#28213E] pt-20 w-full flex justify-center' id='contact'>
+    <div className='h-screen md:mt-0 xl:mt-0 bg-[#28213E] pt-20 w-full flex justify-center' id='contact'>
       <div className="w-full md:w-10/12 xl:w-10/12">
         <div className="w-2/4 pl-4 md:pl-0 xl:pl-0 md:w-[15%] xl:w-[15%] md:pt-5 xl:pt-5">
           <HeaderLabel text="Contact" />
