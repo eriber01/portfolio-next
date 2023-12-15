@@ -9,12 +9,12 @@ import style from '../style.module.css'
 
 const CardProject = ({ img }: { img: string }) => {
   return (
-    <div className={`card-container ${style.cardContainer} hover:rotate-2 hover:scale-90`}
+    <div className={`card-container ${style.cardContainer}`}
       style={{
         backgroundImage: `url(${img})`
       }}
     >
-      <div className={`card ${style.card, style.card} hover:bg-black/90`}>
+      <div className={`card ${style.card, style.card} hover:bg-black/100 hover:-rotate-6`}>
         <div className="w-3/4 pt-16">
           <p className="big-font-size pb-5">
             Nombre del Projecto

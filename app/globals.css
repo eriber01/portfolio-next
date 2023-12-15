@@ -71,7 +71,7 @@ header ul {
 
   /* project */
   .card-container {
-    @apply w-[90%] md:w-[30%] h-[300px] my-4 rounded-xl bg-cover bg-center
+    @apply w-[90%] md:w-[30%] h-[300px] my-4 rounded-xl bg-cover bg-center hover:rotate-6 md:hover:scale-105 xl:hover:scale-105 cursor-pointer bg-black md:max-w-[50%] md:min-w-[30%]
   }
 
   .card {
