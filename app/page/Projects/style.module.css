@@ -1,0 +1,33 @@
+.cardContainer {
+  transition: all 600ms ease-in-out;
+}
+
+.card {
+  transition: all 600ms ease-in-out;
+}
+
+/* .card:hover, .cardContainer:hover {
+  animation: cardAnimate 3s infinite ease-in-out;
+} */
+
+@keyframes cardAnimate {
+  0% {
+    border-radius: 30px 12px 12px 12px;
+  }
+
+  25% {
+    border-radius: 12px 30px 12px 12px;
+  }
+
+  50% {
+    border-radius: 12px 12px 30px 12px;
+  }
+
+  75% {
+    border-radius: 12px 12px 12px 30px;
+  }
+
+  100% {
+    border-radius: 30px 12px 12px 12px;
+  }
+}
