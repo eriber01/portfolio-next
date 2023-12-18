@@ -1,3 +1,5 @@
+'use client'
+import { Slide } from "react-awesome-reveal"
 import HeaderLabel from "../UI/HeaderLabel"
 import FormContact from "./components/FormContact"
 import Informations from "./components/Informations"
@@ -21,7 +23,9 @@ export const Contact = () => {
           </div>
           {/* informations */}
           <div className="flex justify-center items-center md:w-[40%] xl:w-[40%] h-full bg-[#28213E] px-10 md:px-0 xl:px-0">
-            <Informations />
+            <Slide direction="down">
+              <Informations />
+            </Slide>
           </div>
         </div>
       </div>

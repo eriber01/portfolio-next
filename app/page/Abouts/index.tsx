@@ -1,7 +1,8 @@
-
+'use client'
 import HeaderLabel from '../UI/HeaderLabel'
 import TechComponent from './components/TechComponent'
 import AboutMeText from './components/AboutMeText'
+import { Slide } from 'react-awesome-reveal'
 // import TechModal from './components/TechModal'
 
 export const About = () => {
@@ -25,7 +26,9 @@ export const About = () => {
           </div>
           {/* text container */}
           <div className='px-8 md:px-0 xl:px-0 bg-[#28213E] w-full md:w-[40%] xl:w-[40%] h-full mt-10 md:mt-0 xl:mt-0 block md:flex xl:flex justify-center items-center'>
-            <AboutMeText />
+            <Slide direction='up'>
+              <AboutMeText />
+            </Slide>
           </div>
         </div>
       </div>

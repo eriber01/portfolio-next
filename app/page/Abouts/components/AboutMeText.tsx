@@ -1,4 +1,3 @@
-'use server'
 
 const AboutMeText = () => {
   const year = 3

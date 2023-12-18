@@ -4,7 +4,7 @@ import CardProject from './components/CardProject'
 
 export const Projects = () => {
   return (
-    <div className='h-full w-full mt-80 md:mt-0 xl:mt-0 bg-[#28213ec2] pt-20 flex justify-center' id='projects'>
+    <div className='h-full w-full mt-96 md:mt-0 xl:mt-0 bg-[#28213ec2] pt-20 flex justify-center' id='projects'>
       <div className='w-full md:w-10/12 xl:w-10/12'>
         <div className='w-2/4 pl-4 md:pl-0 xl:pl-0 md:w-[15%] xl:w-[15%] md:pt-5 xl:pt-5'>
           <HeaderLabel text='Project' />
