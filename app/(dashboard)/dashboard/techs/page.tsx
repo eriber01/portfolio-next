@@ -1,7 +1,6 @@
 'use client'
 import { useState } from "react";
 import AddMoreButton from "../../components/AddMoreButton";
-import HeaderTabs from "../../components/HeaderTabs";
 import { CreateTech } from "./components/CreateTech";
 import { ManageTech } from "./components/ManageTech";
 import { CustomModal } from "../../components/CustomModal";

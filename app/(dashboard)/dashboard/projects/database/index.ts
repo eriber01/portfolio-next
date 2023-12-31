@@ -5,7 +5,7 @@ export const TechArr: Techs[] = [
   {
     id: 1,
     name: 'Html',
-    description: 'Prueba',
+    description: 'Prueba Html',
     imageUrl: 'https://res.cloudinary.com/eriber/image/upload/v1682477601/Portafolio/TechImage/Html_llxzgt.png',
   },
   {
