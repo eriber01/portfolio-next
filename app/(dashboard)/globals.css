@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components {
+  .transition-custom {
+    @apply transition-all duration-1000 ease-out;
+  }
+}
