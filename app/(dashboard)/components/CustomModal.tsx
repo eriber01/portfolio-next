@@ -6,16 +6,17 @@ interface Props {
   children: ReactNode
   isOpen: boolean
   toggle: Dispatch<SetStateAction<boolean>>
+  style: string
 }
 
-export const CustomModal = ({ name, children, isOpen, toggle }: Props) => {
+export const CustomModal = ({ name, children, isOpen, toggle, style }: Props) => {
   return (
     <div className='h-full'>
       <Modal
         isOpen={isOpen}
         size='3xl'
         hideCloseButton
-        className='bg-[#1F2128]'
+        className={`bg-[#1F2128] ${style}`}
       >
         <ModalContent>
           <ModalHeader>

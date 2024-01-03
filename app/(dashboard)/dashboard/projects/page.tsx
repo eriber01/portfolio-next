@@ -15,6 +15,7 @@ export default function Page() {
         isOpen={isOpen}
         toggle={toggle}
         children={<CreateProjects />}
+        style="h-full overflow-y-scroll"
       />
 
       <AddMoreButton toggle={toggle} />

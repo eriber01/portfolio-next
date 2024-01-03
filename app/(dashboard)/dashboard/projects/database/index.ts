@@ -60,3 +60,7 @@ export const ProjectsArr: Projects[] = [
     status: false
   }
 ]
+
+export const create = () => {
+  // 'use server'
+}

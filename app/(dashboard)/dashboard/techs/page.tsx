@@ -19,6 +19,7 @@ export default function Page() {
         isOpen={isOpen}
         name="Create Tech"
         toggle={toggle}
+        style=""
         children={<CreateTech />}
       />
 
