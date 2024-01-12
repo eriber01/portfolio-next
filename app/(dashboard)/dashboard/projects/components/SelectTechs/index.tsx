@@ -12,6 +12,8 @@ const SelectTech = () => {
         label="Select a Tech"
         variant="bordered"
         size="sm"
+        onChange={(value) => console.log(value)
+        }
       >
         {
           tech.map((item, index) => (

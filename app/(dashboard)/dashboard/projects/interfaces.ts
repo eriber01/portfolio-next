@@ -1,6 +1,6 @@
 
 export interface Techs {
-  id: number | null
+  id?: number | null
   name: string
   description: string
   imageUrl?: string
@@ -8,12 +8,12 @@ export interface Techs {
 }
 
 export interface Projects {
-  id: number | null
+  id?: number | null
   name: string
   description: string
-  linkUrl: string
-  gitUrl: string
-  imageUrl: string
+  image: string
+  link: string
+  git: string
   techs: Techs[]
   status?: boolean
 }

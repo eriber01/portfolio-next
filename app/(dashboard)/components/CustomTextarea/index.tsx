@@ -11,6 +11,7 @@ const CustomTextarea = ({ style, value, placeholder, rows }: TextareaProps) => {
         className='rounded bg-transparent border pl-2'
         placeholder={placeholder}
         rows={rows}
+        value={value}
       />
     </div>
   )
