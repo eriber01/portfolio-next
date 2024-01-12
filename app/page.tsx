@@ -5,7 +5,6 @@ import HomePage from "./page/home";
 import { Projects } from "./page/Projects";
 import { About } from "./page/Abouts";
 import { Contact } from "./page/Contact";
-// import TopNav from "./page/Navs/top";
 
 export default function Home() {
   return (
