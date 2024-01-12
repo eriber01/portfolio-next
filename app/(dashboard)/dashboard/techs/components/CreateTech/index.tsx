@@ -2,7 +2,8 @@ import HeaderName from '@/app/(dashboard)/components/HeaderName'
 import CustomInput from '@/app/(dashboard)/components/CustomInput';
 import { CustomInputFile } from '@/app/(dashboard)/components/CustomInputFile';
 import CustomTextarea from '@/app/(dashboard)/components/CustomTextarea';
-import { Button } from '@nextui-org/react';
+import { Button, Select, SelectItem } from '@nextui-org/react';
+import { TechTypes } from '../../database/index';
 
 export const CreateTech = () => {
   return (
@@ -22,6 +23,26 @@ export const CreateTech = () => {
             <div className='w-[45%]'>
               <CustomInputFile />
             </div>
+          </div>
+          <div className='mt-5'>
+            <Select
+              size='sm'
+              label="Select a Type"
+              variant='bordered'
+              className='w-[45%]'
+            >
+              {
+                TechTypes.map(item => (
+                  <SelectItem
+                    key={item.id}
+                    className='text-black'
+                    color='primary'
+                  >
+                    {item.name}
+                  </SelectItem>
+                ))
+              }
+            </Select>
           </div>
           <div className='mt-5'>
             <CustomTextarea

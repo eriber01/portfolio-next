@@ -1,17 +1,62 @@
 'use client'
 import { Button } from "@nextui-org/react";
 import CustomInput from "../../components/CustomInput";
-import { FormEvent } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import HeaderName from "../../components/HeaderName";
+import { Profile } from "./interface";
+import { onSaveProfile } from "./database/SaveProfile";
+import 'react-toastify/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import { GetProfile } from "./database/GetProfile";
+
+const INITIAL_STATE: Profile = {
+  name: '',
+  job: '',
+  phone: '',
+  email: '',
+  git_url: '',
+  linkedin: '',
+  linkedin_url: '',
+  cv: '',
+  year: 0
+}
 
 export default function Page() {
+  const [state, setState] = useState(INITIAL_STATE)
+
+  const onChange = (path: string, value: string | number) => {
+    setState(prev => ({
+      ...prev,
+      [path]: value
+    }))
+  }
 
   const onSave = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    await onSaveProfile(state)
   }
+
+
+  const getProfile = async () => {
+    const res: Profile | null = await GetProfile()
+    
+    console.log({res});
+    if (res?.id) {
+      
+      setState(res)
+    }
+
+    return res
+  }
+
+  useEffect(() => {
+    getProfile()
+  }, [])
+
 
   return (
     <div>
+      <ToastContainer />
       <HeaderName text="Profile" />
       <div className="flex justify-center mt-10">
         <form
@@ -25,56 +70,45 @@ export default function Page() {
               label="Name"
               placeHolder="Enter your name"
               styles="w-[45%]"
-              value=""
+              value={state.name}
+              onChange={onChange}
             />
             <CustomInput
               id="job"
               label="Job"
               placeHolder="Enter your Job"
               styles="w-[45%]"
-              value=""
+              value={state.job}
+              onChange={onChange}
             />
           </div>
-          {/* <div className="flex flex-wrap justify-between mt-5">
-            <CustomInput
-              id="home_description_1"
-              label="Home description One"
-              placeHolder="Home description One"
-              styles="w-[45%]"
-              value=""
-            />
-            <CustomInput
-              id="home_description_2"
-              label="Home description Two"
-              placeHolder="Home description Two"
-              styles="w-[45%]"
-              value=""
-            />
-          </div> */}
           <div className="flex flex-wrap justify-between mt-5">
             <CustomInput
-              id="cellphone"
-              label="Cellphone"
-              placeHolder="Cellphone"
+              id="phone"
+              label="Phone"
+              placeHolder="Phone"
               styles="w-[30%]"
-              value=""
+              value={state.phone}
               type="tel"
+              onChange={onChange}
             />
             <CustomInput
               id="email"
               label="Email"
               placeHolder="test@email.com"
               styles="w-[30%]"
-              value=""
+              value={state.email}
               type="email"
+              onChange={onChange}
             />
             <CustomInput
-              id="git"
+              id="git_url"
               label="GitHub"
               placeHolder="GitHub"
               styles="w-[30%]"
-              value=""
+              value={state.git_url}
               type="text"
+              onChange={onChange}
             />
           </div>
           <div className="flex flex-wrap justify-between mt-5">
@@ -83,34 +117,38 @@ export default function Page() {
               label="Linkedin Url"
               placeHolder="Linkedin Url"
               styles="w-[45%]"
-              value=""
+              value={state.linkedin_url}
               type="text"
+              onChange={onChange}
             />
             <CustomInput
-              id="linkedin_name"
-              label="Linkedin Name"
-              placeHolder="Linkedin Name"
+              id="linkedin"
+              label="Linkedin"
+              placeHolder="Linkedin"
               styles="w-[45%]"
-              value=""
+              value={state.linkedin}
               type="text"
+              onChange={onChange}
             />
           </div>
           <div className="flex flex-wrap justify-start mt-5">
             <CustomInput
-              id="cv_url"
+              id="cv"
               label="CV"
-              placeHolder="CV Url"
+              placeHolder="CV"
               styles="w-[45%]"
-              value=""
+              value={state.cv}
               type="text"
+              onChange={onChange}
             />
             <CustomInput
               id="year"
               label="Year"
               placeHolder="Year"
               styles="pl-10 w-[120px]"
-              value=""
+              value={state.year}
               type="number"
+              onChange={onChange}
             />
           </div>
           <div className="mt-10">

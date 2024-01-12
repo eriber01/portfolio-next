@@ -1,23 +1,32 @@
+import { Profile } from "@/app/(dashboard)/dashboard/profile/interface";
 import prisma from "@/libs/db";
 import { NextResponse } from "next/server";
 
-export async function POST(request: Request) {
-  const data = await request.json()
+export async function GET() {
+  try {
+    const res = await prisma.profile.findFirst()
+    console.log(res);
+    return NextResponse.json({ message: 'Get profile Success', res, status: 'success' })
+  } catch (error) {
+    return NextResponse.json({ message: 'Error get Profile', res: [], status: 'fail' })
+  }
+}
 
-  console.log({ data });
+export async function POST(req: Request) {
 
-  const test = await prisma.test.upsert({
-    where: { id: data.id },
-    update: {
-      name: data.name
-    },
-    create: {
-      name: data.name
-    }
-  })
+  try {
+    const data: Profile = await req.json()
+    console.log({ data });
 
-  console.log({ test });
+    await prisma.profile.create({
+      data
+    })
 
+    console.log('paso');
 
-  return NextResponse.json({ message: 'guardado' })
+    return NextResponse.json({ message: 'Profile saved', status: 'success' })
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ message: error, status: 'fail' })
+  }
 }

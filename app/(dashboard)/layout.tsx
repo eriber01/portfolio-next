@@ -3,6 +3,8 @@ import { Trispace } from 'next/font/google'
 import './globals.css'
 import Sidebar from './components/Sidebar'
 
+
+
 const inter = Trispace({ subsets: ['latin'] })
 
 export const metadata: Metadata = {

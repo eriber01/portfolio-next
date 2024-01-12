@@ -33,9 +33,9 @@ export const ManageTech = () => {
               <p>{item.description}</p>
             </div>
             <div className="my-5 flex justify-between w-full px-5">
-              <ButtonManage color="blue" name="Edit" />
-              <ButtonManage color={item.status ? "green" : "orange"} name={item.status ? "Enable" : "Disable"} />
-              <ButtonManage color="red" name="Delete" />
+              <ButtonManage actions="edit" name="Edit" />
+              <ButtonManage actions="status" name="" status={item.status} />
+              <ButtonManage actions="delete" name="Delete" />
             </div>
           </div>
         ))
