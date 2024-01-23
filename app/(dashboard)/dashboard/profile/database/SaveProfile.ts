@@ -20,8 +20,12 @@ export async function onSaveProfile(state: Profile) {
     }
   }
 
-  const { data } = await api.post<savedMessageProps>('/profile', state)
-
-  ApiResponseMessage(data)
+  try {
+    toast.loading('Saving the Profile')
+    const { data } = await api.post<savedMessageProps>('/profile', state)
+    ApiResponseMessage(data)
+  } catch (error) {
+    console.log(error);
+  }
 
 }

@@ -1,12 +1,12 @@
-type actions = "edit" | "delete" | "status"
+type actions = "edit" | "delete" | "enabled"
 
 interface Props {
   name: string
   actions: actions
-  status?: boolean
+  enabled?: boolean
 }
 
-const Buttons = ({ actions, name, status }: Props) => {
+const Buttons = ({ actions, name, enabled }: Props) => {
   switch (actions) {
     case 'edit':
       return <button
@@ -14,11 +14,11 @@ const Buttons = ({ actions, name, status }: Props) => {
       >
         {name}
       </button>;
-    case "status":
+    case "enabled":
       return <button
-        className={`${status ? "bg-green-600" : "bg-orange-600"} text-white text-sm rounded px-2`}
+        className={`${enabled ? "bg-green-600" : "bg-orange-600"} text-white text-sm rounded px-2`}
       >
-        {status ? 'Active' : 'Disable'}
+        {enabled ? 'Active' : 'Disable'}
       </button>;
     case "delete":
       return <button
@@ -31,10 +31,10 @@ const Buttons = ({ actions, name, status }: Props) => {
   }
 }
 
-export const ButtonManage = ({ name, actions, status }: Props) => {
+export const ButtonManage = ({ name, actions, enabled }: Props) => {
   return (
     <div>
-      {<Buttons actions={actions} name={name} status={status} />}
+      {<Buttons actions={actions} name={name} enabled={enabled} />}
     </div>
   )
 }

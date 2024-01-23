@@ -1,4 +1,5 @@
-import { Projects, Techs } from "../interfaces";
+import { Techs } from "../../techs/interface";
+import { Projects } from "../interfaces";
 
 
 export const TechArr: Techs[] = [
@@ -7,27 +8,31 @@ export const TechArr: Techs[] = [
     name: 'Html',
     description: 'Prueba Html',
     status: true,
-    imageUrl: 'https://res.cloudinary.com/eriber/image/upload/v1682477601/Portafolio/TechImage/Html_llxzgt.png',
+    image: 'https://res.cloudinary.com/eriber/image/upload/v1682477601/Portafolio/TechImage/Html_llxzgt.png',
+    show_type: 2
   },
   {
     id: 2,
     name: 'Next',
     status: false,
     description: 'Prueba',
-    imageUrl: 'https://res.cloudinary.com/eriber/image/upload/v1682565804/Portafolio/TechImage/Netx_bil5ho.png',
+    image: 'https://res.cloudinary.com/eriber/image/upload/v1682565804/Portafolio/TechImage/Netx_bil5ho.png',
+    show_type: 2
   },
   {
-    id: 2,
+    id: 3,
     name: 'Next',
     status: true,
     description: 'Prueba',
-    imageUrl: 'https://res.cloudinary.com/eriber/image/upload/v1682565804/Portafolio/TechImage/Netx_bil5ho.png',
+    image: 'https://res.cloudinary.com/eriber/image/upload/v1682565804/Portafolio/TechImage/Netx_bil5ho.png',
+    show_type: 2
   },
   {
-    id: 2,
+    id: 15,
     name: 'Next',
     description: 'Prueba',
-    imageUrl: 'https://res.cloudinary.com/eriber/image/upload/v1682565804/Portafolio/TechImage/Netx_bil5ho.png',
+    image: 'https://res.cloudinary.com/eriber/image/upload/v1682565804/Portafolio/TechImage/Netx_bil5ho.png',
+    show_type: 2
   }
 ]
 
@@ -36,9 +41,9 @@ export const ProjectsArr: Projects[] = [
     id: null,
     name: 'Prueba 1',
     description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae fugiat odio possimus nemo, vel animi dolorem saepe.',
-    gitUrl: '',
-    imageUrl: 'https://res.cloudinary.com/eriber/image/upload/v1696122008/Portafolio/ProjectImage/Smart_Letters_sxucdc.png',
-    linkUrl: '',
+    git: '',
+    image: 'https://res.cloudinary.com/eriber/image/upload/v1696122008/Portafolio/ProjectImage/Smart_Letters_sxucdc.png',
+    link: '',
     techs: TechArr,
     status: true
   },
@@ -46,9 +51,9 @@ export const ProjectsArr: Projects[] = [
     id: null,
     name: 'Prueba 2',
     description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae fugiat odio possimus nemo, vel animi dolorem saepe.',
-    gitUrl: '',
-    imageUrl: 'https://res.cloudinary.com/eriber/image/upload/v1696122008/Portafolio/ProjectImage/Daily_Task_App_xxvshx.png',
-    linkUrl: '',
+    git: '',
+    image: 'https://res.cloudinary.com/eriber/image/upload/v1696122008/Portafolio/ProjectImage/Daily_Task_App_xxvshx.png',
+    link: '',
     techs: TechArr,
     status: false
   },
@@ -56,9 +61,9 @@ export const ProjectsArr: Projects[] = [
     id: null,
     name: 'Prueba 3',
     description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae fugiat odio possimus nemo, vel animi dolorem saepe.',
-    gitUrl: '',
-    imageUrl: 'https://res.cloudinary.com/eriber/image/upload/v1696122008/Portafolio/ProjectImage/Next_Dashboard_iygi2r.png',
-    linkUrl: '',
+    git: '',
+    image: 'https://res.cloudinary.com/eriber/image/upload/v1696122008/Portafolio/ProjectImage/Next_Dashboard_iygi2r.png',
+    link: '',
     techs: TechArr,
     status: false
   }

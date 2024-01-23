@@ -27,23 +27,45 @@ model techs {
   id            Int             @id @default(autoincrement())
   name          String
   description   String
-  image         String
   show_type     Int
+  enabled       Boolean
   tech_projects tech_projects[]
+  image         tech_images?
   created_at    DateTime        @default(now())
   updated_at    DateTime        @updatedAt
+}
+
+model tech_images {
+  id         Int      @id @default(autoincrement())
+  url        String
+  public_id  String
+  tech_id    Int      @unique
+  tech       techs    @relation(fields: [tech_id], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 model projects {
   id          Int             @id @default(autoincrement())
   name        String
   description String
-  image       String
   link        String
   git         String
   techs       tech_projects[]
+  image       project_images?
+  enabled     Boolean
   created_at  DateTime        @default(now())
   updated_at  DateTime        @updatedAt
+}
+
+model project_images {
+  id         Int      @id @default(autoincrement())
+  url        String
+  public_id  String
+  project_id Int      @unique
+  project    projects @relation(fields: [project_id], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 model tech_projects {

@@ -7,20 +7,60 @@ import SelectTech from "../SelectTechs"
 import TableTech from "../TableTech"
 import { Button } from "@nextui-org/react"
 import { Projects } from "../../interfaces"
+import { toast } from "react-toastify"
+import { onSaveProject } from "../../database/SaveProfile"
+import { Techs } from "../../../techs/interface"
 
 const INITIAL_STATE: Projects = {
-  description: 'desc',
-  git: 'git',
-  image: '',
-  link: 'link',
-  name: "name",
+  description: '',
+  git: '',
+  image: null,
+  link: '',
+  name: "",
   techs: [],
 }
 
 const CreateProjects = () => {
 
   const [state, setState] = useState(INITIAL_STATE);
-  console.log({ state });
+
+  const addTech = (value: Techs) => {
+
+    const validate = state.techs.find(item => item.id === value.id)
+
+    if (validate) {
+      toast.error(`The techs ${validate.name} exist for this project`)
+      return
+    }
+
+    const tech = [...state.techs];
+    tech.push(value)
+
+    setState(prev => ({
+      ...prev,
+      techs: tech
+    }))
+
+  }
+
+  const addImage = (file: File) => {
+    setState(prev => ({
+      ...prev,
+      image: file
+    }))
+  }
+
+  const deleteTech = (id: number) => {
+
+    const tech = [...state.techs]
+
+    const filter = tech.filter(item => item.id !== id)
+
+    setState(prev => ({
+      ...prev,
+      techs: filter
+    }))
+  }
 
   const onChange = (path: string, value: string | number) => {
     setState(prev => ({
@@ -31,6 +71,7 @@ const CreateProjects = () => {
 
   const onSave = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    await onSaveProject(state)
   }
 
   return (
@@ -57,6 +98,7 @@ const CreateProjects = () => {
                 value={state.description}
                 style="w-full"
                 rows={6}
+                onChange={onChange}
               />
             </div>
             <div className="flex flex-col justify-between w-[45%]">
@@ -76,14 +118,14 @@ const CreateProjects = () => {
                 styles="w-full"
                 onChange={onChange}
               />
-              <CustomInputFile />
+              <CustomInputFile addImage={addImage} />
             </div>
           </div>
           <div className="mt-10">
-            <SelectTech />
+            <SelectTech addTech={addTech} />
           </div>
           <div className="mt-5">
-            <TableTech />
+            <TableTech tech={state.techs} deleteTech={deleteTech} />
           </div>
           <div className="my-10">
             <Button

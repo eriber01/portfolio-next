@@ -1,10 +1,14 @@
 'use client'
 import { Button, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from '@nextui-org/react'
-import { TechArr } from '../../database'
+import { Techs } from '../../interfaces'
 
+interface Props {
+  tech: Techs[],
+  deleteTech: (id: number) => void
+}
 
-const TableTech = () => {
-  const tech = TechArr
+const TableTech = ({ tech, deleteTech }: Props) => {
+
   return (
     <div>
       <Table
@@ -34,6 +38,7 @@ const TableTech = () => {
                 <Button
                   color='danger'
                   size='sm'
+                  onClick={() => deleteTech(item.id!)}
                 >
                   Delete
                 </Button>

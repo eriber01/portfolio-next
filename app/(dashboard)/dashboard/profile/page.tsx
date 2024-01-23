@@ -39,10 +39,7 @@ export default function Page() {
 
   const getProfile = async () => {
     const res: Profile | null = await GetProfile()
-    
-    console.log({res});
     if (res?.id) {
-      
       setState(res)
     }
 

@@ -1,19 +1,19 @@
-
-export interface Techs {
-  id?: number | null
-  name: string
-  description: string
-  imageUrl?: string
-  status?: boolean
-}
+import { Techs } from "../techs/interface"
 
 export interface Projects {
   id?: number | null
   name: string
   description: string
-  image: string
+  image: File | null | ProjectImage
   link: string
   git: string
   techs: Techs[]
-  status?: boolean
+  enabled?: boolean
+}
+
+export interface ProjectImage {
+  id?: number
+  url: string
+  public_id: string
+  project_id: number
 }

@@ -1,27 +1,65 @@
-import HeaderName from '@/app/(dashboard)/components/HeaderName'
+import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
 import CustomInput from '@/app/(dashboard)/components/CustomInput';
 import { CustomInputFile } from '@/app/(dashboard)/components/CustomInputFile';
 import CustomTextarea from '@/app/(dashboard)/components/CustomTextarea';
 import { Button, Select, SelectItem } from '@nextui-org/react';
 import { TechTypes } from '../../database/index';
+import { Techs } from '../../interface';
+import { onSaveTech } from '../../database/SaveTech';
 
-export const CreateTech = () => {
+interface Props {
+  toggle: Dispatch<SetStateAction<boolean>>
+}
+
+const INITIAL_STATE: Techs = {
+  name: '',
+  description: '',
+  file: null,
+  show_type: null
+}
+
+export const CreateTech = ({ toggle }: Props) => {
+  const [state, setState] = useState(INITIAL_STATE)
+
+  const addImage = (file: File) => {
+    setState(prev => ({
+      ...prev,
+      file: file
+    }))
+  }
+
+  const onChange = (path: string, value: string | number) => {
+    setState(prev => ({
+      ...prev,
+      [path]: value
+    }))
+  }
+
+  const onSave = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    await onSaveTech(state)
+    setState(INITIAL_STATE)
+    toggle(false)
+  }
+
   return (
     <div>
       <div className='flex justify-center mt-10'>
         <form
           className='w-10/12'
-          action="">
+          onSubmit={(e) => onSave(e)}
+        >
           <div className='flex justify-between w-full'>
             <CustomInput
               id='name'
               label='Name'
               placeHolder='Tech Name'
-              value=''
+              value={state.name}
               styles='w-[45%]'
+              onChange={onChange}
             />
             <div className='w-[45%]'>
-              <CustomInputFile />
+              <CustomInputFile addImage={addImage} />
             </div>
           </div>
           <div className='mt-5'>
@@ -30,6 +68,7 @@ export const CreateTech = () => {
               label="Select a Type"
               variant='bordered'
               className='w-[45%]'
+              onChange={({ target: { value } }) => onChange('show_type', parseInt(value))}
             >
               {
                 TechTypes.map(item => (
@@ -48,7 +87,8 @@ export const CreateTech = () => {
             <CustomTextarea
               placeholder='Description'
               rows={5}
-              value=''
+              value={state.description}
+              onChange={onChange}
             />
           </div>
           <div className="mt-10">

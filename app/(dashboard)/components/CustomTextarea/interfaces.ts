@@ -3,4 +3,5 @@ export interface TextareaProps {
   value: string
   placeholder: string
   rows: number
+  onChange: (path: string, value: string) => void
 }

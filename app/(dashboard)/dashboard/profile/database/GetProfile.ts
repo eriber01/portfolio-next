@@ -13,7 +13,6 @@ export const GetProfile = async (): Promise<Profile | null> => {
   const { data } = await api.get<GetProfileProps>('/profile')
 
   if (data.status === 'success') {
-    console.log({ data });
     return data.res
   }
 

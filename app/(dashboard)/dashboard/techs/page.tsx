@@ -4,14 +4,15 @@ import AddMoreButton from "../../components/AddMoreButton";
 import { CreateTech } from "./components/CreateTech";
 import { ManageTech } from "./components/ManageTech";
 import { CustomModal } from "../../components/CustomModal";
-
+import 'react-toastify/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
 
 export default function Page() {
   const [isOpen, toggle] = useState(false)
 
   return (
     <div>
-      {/* Aqui el boton de mas */}
+      <ToastContainer />
 
       <AddMoreButton toggle={toggle} />
 
@@ -20,15 +21,11 @@ export default function Page() {
         name="Create Tech"
         toggle={toggle}
         style=""
-        children={<CreateTech />}
+        children={<CreateTech toggle={toggle}/>}
       />
 
       <ManageTech />
 
-      {/* <HeaderTabs
-        createChildren={<CreateTech />}
-        manageChildren={<ManageTech />}
-      /> */}
     </div>
   )
 }

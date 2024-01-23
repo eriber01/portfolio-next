@@ -6,6 +6,7 @@ export const api = axios.create({ baseURL: '/api/' })
 
 
 export const ApiResponseMessage = ({ message, status }: savedMessageProps) => {
+  toast.dismiss()
   if (status === 'success') {
     toast.success(message)
     return
@@ -13,3 +14,4 @@ export const ApiResponseMessage = ({ message, status }: savedMessageProps) => {
 
   toast.error(message)
 }
+
