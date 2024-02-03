@@ -5,17 +5,13 @@ import { ButtonManage } from './components/ButtonManage'
 import { Techs } from '../../interface'
 import { GetTechs } from '../../database/GetTechs'
 
+
 export const ManageTech = () => {
   const [state, setState] = useState<Techs[]>()
 
   const getTech = async () => {
-
     const res: Techs[] = await GetTechs()
-    console.log(res);
-
-    if (res.length) {
-      setState(res)
-    }
+    setState(res)
   }
 
   useEffect(() => {
@@ -49,9 +45,9 @@ export const ManageTech = () => {
               <p>{item.description}</p>
             </div>
             <div className="my-5 flex justify-between w-full px-5">
-              <ButtonManage actions="edit" name="Edit" />
-              <ButtonManage actions="enabled" name="" enabled={item.enabled} />
-              <ButtonManage actions="delete" name="Delete" />
+              <ButtonManage actions="edit" name="Edit" tech={item} refetch={getTech} />
+              <ButtonManage actions="enabled" name="" enabled={item.enabled} tech={item} refetch={getTech} />
+              <ButtonManage actions="delete" name="Delete" tech={item} refetch={getTech} />
             </div>
           </div>
         ))

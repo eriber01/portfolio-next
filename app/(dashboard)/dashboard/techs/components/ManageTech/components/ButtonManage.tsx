@@ -1,12 +1,17 @@
+import { DeleteTech } from "../../../database/DeleteTech"
+import { Techs } from "../../../interface"
+
 type actions = "edit" | "delete" | "enabled"
 
 interface Props {
+  tech: Techs
   name: string
   actions: actions
   enabled?: boolean
+  refetch: () => void
 }
 
-const Buttons = ({ actions, name, enabled }: Props) => {
+const Buttons = ({ actions, name, enabled, tech, refetch }: Props) => {
   switch (actions) {
     case 'edit':
       return <button
@@ -22,6 +27,10 @@ const Buttons = ({ actions, name, enabled }: Props) => {
       </button>;
     case "delete":
       return <button
+        onClick={async () => {
+          await DeleteTech(tech)
+          await refetch()
+        }}
         className={`bg-red-600 text-white text-sm rounded px-2`}
       >
         {name}
@@ -31,10 +40,10 @@ const Buttons = ({ actions, name, enabled }: Props) => {
   }
 }
 
-export const ButtonManage = ({ name, actions, enabled }: Props) => {
+export const ButtonManage = ({ name, actions, enabled, tech, refetch }: Props) => {
   return (
     <div>
-      {<Buttons actions={actions} name={name} enabled={enabled} />}
+      {<Buttons actions={actions} name={name} enabled={enabled} tech={tech} refetch={refetch} />}
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { TechImage, Techs } from "@/app/(dashboard)/dashboard/techs/interface"
 import { NextResponse } from "next/server"
-import { updateImage } from "../utils"
+import { deleteImage, updateImage } from "../utils"
 
 import prisma from "@/libs/db"
 
@@ -55,5 +55,36 @@ export async function GET() {
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: 'Get Tech Fail', res: [], status: 'fail' })
+  }
+}
+
+
+export async function DELETE(request: Request) {
+  const data: Techs = await request.json()
+
+  try {
+    const id = Number(data.id)
+
+    if (data.image?.public_id) {
+      await deleteImage(data.image?.public_id)
+    }
+
+    await prisma.tech_images.delete({
+      where: {
+        tech_id: id
+      }
+    })
+
+    await prisma.techs.delete({
+      where: {
+        id
+      },
+    })
+
+    return NextResponse.json({ message: 'Tech Delete', status: 'success' })
+  } catch (error) {
+    console.log(error);
+
+    return NextResponse.json({ message: 'Error Deleted Tech', status: 'fail' })
   }
 }

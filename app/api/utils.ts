@@ -47,3 +47,11 @@ export async function updateImage(file: File, folder: string): Promise<returnIma
   }
 
 }
+
+export const deleteImage = async (public_id: string) => {
+  try {
+    await cloudinary.uploader.destroy(public_id)
+  } catch (error) {
+    throw new Error("Error delete the image");
+  }
+}
