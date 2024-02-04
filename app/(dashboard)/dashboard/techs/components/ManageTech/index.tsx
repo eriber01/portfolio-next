@@ -3,20 +3,13 @@ import HeaderName from '@/app/(dashboard)/components/HeaderName'
 import Image from 'next/image'
 import { ButtonManage } from './components/ButtonManage'
 import { Techs } from '../../interface'
-import { GetTechs } from '../../database/GetTechs'
 
+interface Props {
+  techs: Techs[]
+  refetch: () => void
+}
 
-export const ManageTech = () => {
-  const [state, setState] = useState<Techs[]>()
-
-  const getTech = async () => {
-    const res: Techs[] = await GetTechs()
-    setState(res)
-  }
-
-  useEffect(() => {
-    getTech()
-  }, [])
+export const ManageTech = ({ techs, refetch }: Props) => {
 
   return (
     <div className="flex flex-col w-full items-center justify-center">
@@ -24,7 +17,7 @@ export const ManageTech = () => {
         <HeaderName text="Manage Tech" />
       </div>
       <div className="flex flex-wrap justify-between w-10/12 mt-10">
-        {state?.map((item, index) => (
+        {techs?.map((item, index) => (
           <div
             className='w-[300px] h-full bg-white text-black my-5 rounded flex flex-col items-center'
             key={index}
@@ -45,9 +38,9 @@ export const ManageTech = () => {
               <p>{item.description}</p>
             </div>
             <div className="my-5 flex justify-between w-full px-5">
-              <ButtonManage actions="edit" name="Edit" tech={item} refetch={getTech} />
-              <ButtonManage actions="enabled" name="" enabled={item.enabled} tech={item} refetch={getTech} />
-              <ButtonManage actions="delete" name="Delete" tech={item} refetch={getTech} />
+              <ButtonManage actions="edit" name="Edit" tech={item} refetch={refetch} />
+              <ButtonManage actions="enabled" name="" enabled={item.enabled} tech={item} refetch={refetch} />
+              <ButtonManage actions="delete" name="Delete" tech={item} refetch={refetch} />
             </div>
           </div>
         ))

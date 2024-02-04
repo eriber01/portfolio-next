@@ -9,6 +9,7 @@ import { onSaveTech } from '../../database/SaveTech';
 
 interface Props {
   toggle: Dispatch<SetStateAction<boolean>>
+  refetch: () => void
 }
 
 const INITIAL_STATE: Techs = {
@@ -18,7 +19,7 @@ const INITIAL_STATE: Techs = {
   show_type: null
 }
 
-export const CreateTech = ({ toggle }: Props) => {
+export const CreateTech = ({ toggle, refetch }: Props) => {
   const [state, setState] = useState(INITIAL_STATE)
 
   const addImage = (file: File) => {
@@ -39,6 +40,7 @@ export const CreateTech = ({ toggle }: Props) => {
     e.preventDefault()
     await onSaveTech(state)
     setState(INITIAL_STATE)
+    await refetch()
     toggle(false)
   }
 

@@ -1,14 +1,27 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddMoreButton from "../../components/AddMoreButton";
 import { CreateTech } from "./components/CreateTech";
 import { ManageTech } from "./components/ManageTech";
 import { CustomModal } from "../../components/CustomModal";
 import 'react-toastify/ReactToastify.css'
 import { ToastContainer } from 'react-toastify';
+import { Techs } from "./interface";
+import { GetTechs } from "./database/GetTechs";
 
 export default function Page() {
   const [isOpen, toggle] = useState(false)
+
+  const [tech, setTech] = useState<Techs[]>([])
+
+  const getTech = async () => {
+    const res: Techs[] = await GetTechs()
+    setTech(res)
+  }
+
+  useEffect(() => {
+    getTech()
+  }, [])
 
   return (
     <div>
@@ -21,10 +34,10 @@ export default function Page() {
         name="Create Tech"
         toggle={toggle}
         style=""
-        children={<CreateTech toggle={toggle}/>}
+        children={<CreateTech toggle={toggle} refetch={getTech}/>}
       />
 
-      <ManageTech />
+      <ManageTech techs={tech} refetch={getTech} />
 
     </div>
   )

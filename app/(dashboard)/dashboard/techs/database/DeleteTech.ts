@@ -10,7 +10,7 @@ export async function DeleteTech(tech: Techs) {
     const { data } = await api.delete<savedMessageProps>(`/tech`, { data: tech })
     ApiResponseMessage(data)
   } catch (error) {
-
+    console.log(error);
   }
 
 }
