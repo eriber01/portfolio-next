@@ -3,7 +3,7 @@ import CustomInput from '@/app/(dashboard)/components/CustomInput';
 import { CustomInputFile } from '@/app/(dashboard)/components/CustomInputFile';
 import CustomTextarea from '@/app/(dashboard)/components/CustomTextarea';
 import { Button, Select, SelectItem } from '@nextui-org/react';
-import { TechTypes } from '../../database/index';
+import { TechTypes } from '../../database/utils';
 import { Techs } from '../../interface';
 import { onSaveTech } from '../../database/SaveTech';
 

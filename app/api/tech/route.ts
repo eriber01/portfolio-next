@@ -24,10 +24,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: 'Update image Fail', status: 'fail' })
     }
 
-    if (payload.id) {
-      return NextResponse.json({ message: 'Tech updated', status: 'success' })
-    }
-
     const tech = await prisma.techs.create({
       data: { ...payload }
     })
@@ -48,16 +44,45 @@ export async function POST(request: Request) {
   }
 }
 
+export async function PUT(request: Request) {
+  const data: Techs = await request.json()
+
+  try {
+    const id = Number(data.id)
+
+    const tech = await prisma.techs.findUnique({ where: { id } })
+
+    if (!tech?.id) {
+      return NextResponse.json({ message: 'Tech not Found', status: 'fail' })
+    }
+
+    const payload = {
+      id,
+      description: String(data.description),
+      name: String(data.name),
+      show_type: Number(data.show_type),
+      enabled: data.enabled
+    }
+
+    await prisma.techs.update({ where: { id: tech.id }, data: payload })
+
+    return NextResponse.json({ message: 'Tech updated', status: 'success' })
+  } catch (error) {
+    console.log(error);
+
+    return NextResponse.json({ message: 'Error updated Tech', status: 'fail' })
+  }
+}
+
 export async function GET() {
   try {
-    const res = await prisma.techs.findMany({ include: { image: true } })
+    const res = await prisma.techs.findMany({ include: { image: true }, orderBy: [{ enabled: 'desc' }, { name: 'desc' }] })
     return NextResponse.json({ message: 'Get Tech Success', res: res, status: 'success' })
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: 'Get Tech Fail', res: [], status: 'fail' })
   }
 }
-
 
 export async function DELETE(request: Request) {
   const data: Techs = await request.json()
@@ -83,8 +108,6 @@ export async function DELETE(request: Request) {
 
     return NextResponse.json({ message: 'Tech Delete', status: 'success' })
   } catch (error) {
-    console.log(error);
-
     return NextResponse.json({ message: 'Error Deleted Tech', status: 'fail' })
   }
 }

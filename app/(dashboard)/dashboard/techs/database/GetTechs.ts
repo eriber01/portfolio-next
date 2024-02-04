@@ -18,3 +18,10 @@ export const GetTechs = async (): Promise<Techs[]> => {
 
   return []
 }
+
+export const GetTechById = async (id: number) => {
+  const { data } = await api.get(`/tech/${id}`)
+
+  console.log(data);
+
+}

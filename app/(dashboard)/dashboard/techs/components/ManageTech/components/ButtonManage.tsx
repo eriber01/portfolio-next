@@ -1,4 +1,6 @@
 import { DeleteTech } from "../../../database/DeleteTech"
+import { GetTechById } from "../../../database/GetTechs"
+import { UpdateTech } from "../../../database/UpdateTech"
 import { Techs } from "../../../interface"
 
 type actions = "edit" | "delete" | "enabled"
@@ -16,12 +18,23 @@ const Buttons = ({ actions, name, enabled, tech, refetch }: Props) => {
     case 'edit':
       return <button
         className={`bg-blue-600 text-white text-sm rounded px-2`}
+        onClick={async () => {
+          await GetTechById(tech.id!)
+        }}
       >
         {name}
       </button>;
     case "enabled":
       return <button
         className={`${enabled ? "bg-green-600" : "bg-orange-600"} text-white text-sm rounded px-2`}
+        onClick={async () => {
+          const data = {
+            ...tech,
+            enabled: !tech.enabled
+          }
+          await UpdateTech(data)
+          await refetch()
+        }}
       >
         {enabled ? 'Active' : 'Disable'}
       </button>;

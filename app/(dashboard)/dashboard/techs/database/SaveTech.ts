@@ -3,24 +3,13 @@ import { toast } from "react-toastify"
 import { ApiResponseMessage, api } from "@/app/utils"
 import { Techs } from "../interface"
 import { savedMessageProps } from "@/app/interfaces"
+import { validateTech } from "./utils"
 
 export async function onSaveTech(state: Techs) {
-  let key: keyof Techs
 
-  for (key in state) {
-    const value = state[key]
-    if (typeof value === 'string') {
-      if (!value.trim()) {
-        toast.error(`The field ${key} is required`)
-        return
-      }
-    } else if (typeof 'number') {
-      if (value === 0) {
-        toast.error('Need add one Techs')
-        return
-      }
-    }
-  }
+  const validate = await validateTech(state)
+
+  if (!validate) return
 
   const payload = new FormData();
   const image = state.file as File
