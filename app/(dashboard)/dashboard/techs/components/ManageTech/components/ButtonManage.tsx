@@ -1,5 +1,5 @@
 import { DeleteTech } from "../../../database/DeleteTech"
-import { GetTechById } from "../../../database/GetTechs"
+// import { GetTechById } from "../../../database/GetTechs"
 import { UpdateTech } from "../../../database/UpdateTech"
 import { Techs } from "../../../interface"
 
@@ -11,15 +11,19 @@ interface Props {
   actions: actions
   enabled?: boolean
   refetch: () => void
+  getTechById?: (id: number) => void
 }
 
-const Buttons = ({ actions, name, enabled, tech, refetch }: Props) => {
+const Buttons = ({ actions, name, enabled, tech, refetch, getTechById }: Props) => {
   switch (actions) {
     case 'edit':
       return <button
         className={`bg-blue-600 text-white text-sm rounded px-2`}
         onClick={async () => {
-          await GetTechById(tech.id!)
+          console.log('click');
+          if (getTechById) {
+            await getTechById(tech.id!)
+          }
         }}
       >
         {name}
@@ -53,10 +57,10 @@ const Buttons = ({ actions, name, enabled, tech, refetch }: Props) => {
   }
 }
 
-export const ButtonManage = ({ name, actions, enabled, tech, refetch }: Props) => {
+export const ButtonManage = ({ name, actions, enabled, tech, refetch, getTechById }: Props) => {
   return (
     <div>
-      {<Buttons actions={actions} name={name} enabled={enabled} tech={tech} refetch={refetch} />}
+      {<Buttons actions={actions} name={name} enabled={enabled} tech={tech} refetch={refetch} getTechById={getTechById} />}
     </div>
   )
 }

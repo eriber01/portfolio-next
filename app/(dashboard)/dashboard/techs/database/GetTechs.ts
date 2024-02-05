@@ -3,7 +3,8 @@ import { Techs } from "../interface"
 import { Status } from "@/app/interfaces"
 
 interface GetProfileProps {
-  res: Techs[],
+  techs: Techs[],
+  tech: Techs
   message: string
   status: Status
 }
@@ -13,15 +14,21 @@ export const GetTechs = async (): Promise<Techs[]> => {
 
   if (data.status === 'success') {
     console.log(data);
-    return data.res
+    return data.techs
   }
 
   return []
 }
 
-export const GetTechById = async (id: number) => {
-  const { data } = await api.get(`/tech/${id}`)
+export const GetTechById = async (id: number): Promise<Techs | null> => {
+  const { data } = await api.get<GetProfileProps>(`/tech/${id}`)
 
   console.log(data);
+  if (data.status === 'success') {
+    console.log('success');
 
+    return data.tech
+  }
+
+  return null
 }

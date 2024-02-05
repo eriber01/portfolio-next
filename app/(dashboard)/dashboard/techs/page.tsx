@@ -6,17 +6,71 @@ import { ManageTech } from "./components/ManageTech";
 import { CustomModal } from "../../components/CustomModal";
 import 'react-toastify/ReactToastify.css'
 import { ToastContainer } from 'react-toastify';
-import { Techs } from "./interface";
-import { GetTechs } from "./database/GetTechs";
+import { Techs } from './interface';
+import { GetTechById, GetTechs } from "./database/GetTechs";
+
+interface stateProps {
+  techs: Techs[]
+  tech: Techs
+}
+
+const INITIAL_STATE: stateProps = {
+  tech: {
+    name: '',
+    description: '',
+    file: null,
+    show_type: null
+  },
+  techs: []
+}
 
 export default function Page() {
   const [isOpen, toggle] = useState(false)
+  const [state, setState] = useState(INITIAL_STATE)
+  console.log(state);
 
-  const [tech, setTech] = useState<Techs[]>([])
+  const onChange = (path: string, value: any, reset?: boolean) => {
+    console.log({ path, value });
+    if (reset) {
+      setState(prev => ({
+        ...prev,
+        tech: INITIAL_STATE.tech
+      }))
+      return
+    }
+    setState(prev => ({
+      ...prev,
+      tech: {
+        ...prev.tech,
+        [path]: value
+      }
+    }))
+  }
 
   const getTech = async () => {
     const res: Techs[] = await GetTechs()
-    setTech(res)
+    setState(prev => ({
+      ...prev,
+      techs: res
+    }))
+  }
+
+  const getTechById = async (id: number) => {
+    try {
+
+      const tech = await GetTechById(id)
+      console.log(tech);
+      if (tech?.id) {
+        setState(prev => ({
+          ...prev,
+          tech
+        }))
+
+        toggle(true)
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
@@ -34,10 +88,10 @@ export default function Page() {
         name="Create Tech"
         toggle={toggle}
         style=""
-        children={<CreateTech toggle={toggle} refetch={getTech}/>}
+        children={<CreateTech toggle={toggle} refetch={getTech} onChange={onChange} tech={state.tech} />}
       />
 
-      <ManageTech techs={tech} refetch={getTech} />
+      <ManageTech techs={state.techs} refetch={getTech} getTechById={getTechById} />
 
     </div>
   )

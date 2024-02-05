@@ -1,7 +1,7 @@
 import React from 'react'
 
 interface Props {
-  addImage: (file: File) => void
+  addImage: (path: string, value: any) => void
 }
 
 export const CustomInputFile = ({ addImage }: Props) => {
@@ -15,7 +15,7 @@ export const CustomInputFile = ({ addImage }: Props) => {
                 file:border-white"
         onChange={({ target: { files } }) => {
           if (files?.length) {
-            addImage(files[0])
+            addImage('file', files[0])
           }
         }}
       />

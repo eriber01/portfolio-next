@@ -10,38 +10,20 @@ import { onSaveTech } from '../../database/SaveTech';
 interface Props {
   toggle: Dispatch<SetStateAction<boolean>>
   refetch: () => void
+  tech: Techs,
+  onChange: (path: string, value: any, reset?: boolean) => void
 }
 
-const INITIAL_STATE: Techs = {
-  name: '',
-  description: '',
-  file: null,
-  show_type: null
-}
-
-export const CreateTech = ({ toggle, refetch }: Props) => {
-  const [state, setState] = useState(INITIAL_STATE)
-
-  const addImage = (file: File) => {
-    setState(prev => ({
-      ...prev,
-      file: file
-    }))
-  }
-
-  const onChange = (path: string, value: string | number) => {
-    setState(prev => ({
-      ...prev,
-      [path]: value
-    }))
-  }
+export const CreateTech = ({ toggle, refetch, tech, onChange }: Props) => {
 
   const onSave = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    await onSaveTech(state)
-    setState(INITIAL_STATE)
-    await refetch()
-    toggle(false)
+    const save = await onSaveTech(tech)
+    if (save) {
+      onChange('tech', null, true)
+      await refetch()
+      toggle(false)
+    }
   }
 
   return (
@@ -56,12 +38,12 @@ export const CreateTech = ({ toggle, refetch }: Props) => {
               id='name'
               label='Name'
               placeHolder='Tech Name'
-              value={state.name}
+              value={tech.name}
               styles='w-[45%]'
               onChange={onChange}
             />
             <div className='w-[45%]'>
-              <CustomInputFile addImage={addImage} />
+              <CustomInputFile addImage={onChange} />
             </div>
           </div>
           <div className='mt-5'>
@@ -70,6 +52,7 @@ export const CreateTech = ({ toggle, refetch }: Props) => {
               label="Select a Type"
               variant='bordered'
               className='w-[45%]'
+              defaultSelectedKeys={[String(tech?.show_type) || '0']}
               onChange={({ target: { value } }) => onChange('show_type', parseInt(value))}
             >
               {
@@ -89,7 +72,7 @@ export const CreateTech = ({ toggle, refetch }: Props) => {
             <CustomTextarea
               placeholder='Description'
               rows={5}
-              value={state.description}
+              value={tech.description}
               onChange={onChange}
             />
           </div>

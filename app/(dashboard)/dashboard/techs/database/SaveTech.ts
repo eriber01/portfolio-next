@@ -9,7 +9,7 @@ export async function onSaveTech(state: Techs) {
 
   const validate = await validateTech(state)
 
-  if (!validate) return
+  if (!validate) return false
 
   const payload = new FormData();
   const image = state.file as File
@@ -30,7 +30,9 @@ export async function onSaveTech(state: Techs) {
 
     ApiResponseMessage(data)
 
+    return true
   } catch (error) {
     console.log(error);
+    return false
   }
 }

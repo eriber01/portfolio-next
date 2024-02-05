@@ -76,11 +76,11 @@ export async function PUT(request: Request) {
 
 export async function GET() {
   try {
-    const res = await prisma.techs.findMany({ include: { image: true }, orderBy: [{ enabled: 'desc' }, { name: 'desc' }] })
-    return NextResponse.json({ message: 'Get Tech Success', res: res, status: 'success' })
+    const techs = await prisma.techs.findMany({ include: { image: true }, orderBy: [{ enabled: 'desc' }, { name: 'desc' }] })
+    return NextResponse.json({ message: 'Get Tech Success', techs, status: 'success' })
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ message: 'Get Tech Fail', res: [], status: 'fail' })
+    return NextResponse.json({ message: 'Get Tech Fail', techs: [], status: 'fail' })
   }
 }
 

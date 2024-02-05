@@ -8,5 +8,5 @@ export interface InputTextProps {
   value: string | number
   type?: TypeInput
   styles?: string
-  onChange: (path: string, value: string | number) => void
+  onChange: (path: string, value: string | number, isTech?: boolean) => void
 }
