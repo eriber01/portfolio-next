@@ -7,9 +7,10 @@ interface Props {
   isOpen: boolean
   toggle: Dispatch<SetStateAction<boolean>>
   style: string
+  onChange: (path: string, value: any, reset?: boolean) => void
 }
 
-export const CustomModal = ({ name, children, isOpen, toggle, style }: Props) => {
+export const CustomModal = ({ name, children, isOpen, toggle, style, onChange }: Props) => {
   return (
     <div className='h-full'>
       <Modal
@@ -24,7 +25,10 @@ export const CustomModal = ({ name, children, isOpen, toggle, style }: Props) =>
               {name}
               <span
                 className='border rounded-full px-2 cursor-pointer'
-                onClick={() => toggle(false)}
+                onClick={() => {
+                  toggle(false)
+                  onChange('tech', null, true)
+                }}
               >
                 X
               </span>

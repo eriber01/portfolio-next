@@ -16,6 +16,21 @@ export const TechTypes = [
   },
 ];
 
+export const AreaTypes = [
+  {
+    id: 1,
+    name: 'FrontEnd'
+  },
+  {
+    id: 2,
+    name: 'BackEnd'
+  },
+  {
+    id: 3,
+    name: 'Others'
+  },
+];
+
 export const validateTech = async (state: Techs) => {
 
   let key: keyof Techs
@@ -24,17 +39,19 @@ export const validateTech = async (state: Techs) => {
   for (key in state) {
     const value = state[key]
 
+    console.log(typeof value, value, key);
+
     if (typeof value === 'string') {
       if (!value.trim()) {
         toast.error(`The field ${key} is required`)
         return false
       }
-    } else if (typeof 'number') {
-      if (value === 0) {
-        toast.error('Need add one Techs')
+    } else if (typeof Object) {
+      if (!value) {
+        toast.error(`The field ${key} is required`)
         return false
       }
-    } else if (typeof Boolean) {
+    } else if (typeof Boolean(value)) {
       return true
     } else if (!value) {
       toast.error(`The field ${key} is required`)

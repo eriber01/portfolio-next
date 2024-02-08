@@ -19,7 +19,8 @@ const INITIAL_STATE: stateProps = {
     name: '',
     description: '',
     file: null,
-    show_type: null
+    show_type: 0,
+    area_type: 0,
   },
   techs: []
 }
@@ -87,6 +88,7 @@ export default function Page() {
         isOpen={isOpen}
         name="Create Tech"
         toggle={toggle}
+        onChange={onChange}
         style=""
         children={<CreateTech toggle={toggle} refetch={getTech} onChange={onChange} tech={state.tech} />}
       />

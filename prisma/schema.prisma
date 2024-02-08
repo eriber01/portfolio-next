@@ -28,6 +28,7 @@ model techs {
   name          String
   description   String
   show_type     Int
+  area_type     Int
   enabled       Boolean
   tech_projects tech_projects[]
   image         tech_images?

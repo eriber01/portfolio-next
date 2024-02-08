@@ -7,7 +7,6 @@ interface ParamsGet {
 }
 
 export async function GET(_: Request, { params: { id } }: ParamsGet) {
-  console.log('el id: ', id);
 
   try {
 
@@ -21,8 +20,6 @@ export async function GET(_: Request, { params: { id } }: ParamsGet) {
     if (!tech?.id) {
       return NextResponse.json({ tech: null, message: 'Tech not found', status: 'Fail' })
     }
-
-    console.log({ tech });
 
     return NextResponse.json({ tech, message: '', status: 'success' })
 

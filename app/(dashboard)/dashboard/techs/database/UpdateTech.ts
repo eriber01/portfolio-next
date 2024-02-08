@@ -9,16 +9,27 @@ export async function UpdateTech(tech: Techs) {
 
   const validate = await validateTech(tech)
 
-  if (!validate) return
+  if (!validate) return false
 
   try {
     toast.loading('Updating Tech')
 
-    const { data } = await api.put<savedMessageProps>('/tech', tech)
+    const payload = new FormData();
+    const file = tech.file as File
+    payload.append('image', file)
+
+    Object.entries(tech).forEach(([key, value]) => {
+      payload.append(key, value)
+    })
+
+    console.log(payload);
+
+    const { data } = await api.put<savedMessageProps>('/tech', payload)
 
     ApiResponseMessage(data)
-
+    return true
   } catch (error) {
     console.log(error);
+    return false
   }
 }

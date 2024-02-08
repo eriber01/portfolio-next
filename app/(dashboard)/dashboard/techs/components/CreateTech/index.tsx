@@ -3,9 +3,10 @@ import CustomInput from '@/app/(dashboard)/components/CustomInput';
 import { CustomInputFile } from '@/app/(dashboard)/components/CustomInputFile';
 import CustomTextarea from '@/app/(dashboard)/components/CustomTextarea';
 import { Button, Select, SelectItem } from '@nextui-org/react';
-import { TechTypes } from '../../database/utils';
+import { AreaTypes, TechTypes } from '../../database/utils';
 import { Techs } from '../../interface';
 import { onSaveTech } from '../../database/SaveTech';
+import { UpdateTech } from '../../database/UpdateTech';
 
 interface Props {
   toggle: Dispatch<SetStateAction<boolean>>
@@ -15,10 +16,21 @@ interface Props {
 }
 
 export const CreateTech = ({ toggle, refetch, tech, onChange }: Props) => {
+  console.log(tech);
 
   const onSave = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const save = await onSaveTech(tech)
+
+    let save = false
+
+    console.log(tech);
+
+    if (tech.id) {
+      save = await UpdateTech(tech)
+    } else {
+      save = await onSaveTech(tech)
+    }
+
     if (save) {
       onChange('tech', null, true)
       await refetch()
@@ -46,7 +58,7 @@ export const CreateTech = ({ toggle, refetch, tech, onChange }: Props) => {
               <CustomInputFile addImage={onChange} />
             </div>
           </div>
-          <div className='mt-5'>
+          <div className='flex justify-between w-full mt-5'>
             <Select
               size='sm'
               label="Select a Type"
@@ -57,6 +69,26 @@ export const CreateTech = ({ toggle, refetch, tech, onChange }: Props) => {
             >
               {
                 TechTypes.map(item => (
+                  <SelectItem
+                    key={item.id}
+                    className='text-black'
+                    color='primary'
+                  >
+                    {item.name}
+                  </SelectItem>
+                ))
+              }
+            </Select>
+            <Select
+              size='sm'
+              label="Select a Area"
+              variant='bordered'
+              className='w-[45%]'
+              defaultSelectedKeys={[String(tech?.area_type) || '0']}
+              onChange={({ target: { value } }) => onChange('area_type', parseInt(value))}
+            >
+              {
+                AreaTypes.map(item => (
                   <SelectItem
                     key={item.id}
                     className='text-black'

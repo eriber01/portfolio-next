@@ -9,10 +9,11 @@ export async function POST(request: Request) {
   const file = data.get('image') as File
 
   const payload = {
-    id: Number(data.get('id')) ? Number(data.get('id')) : undefined,
+    id: undefined,
     name: String(data.get('name')),
     description: String(data.get('description')),
     show_type: Number(data.get('show_type')),
+    area_type: Number(data.get('area_type')),
     enabled: true,
   }
 
@@ -45,26 +46,48 @@ export async function POST(request: Request) {
 }
 
 export async function PUT(request: Request) {
-  const data: Techs = await request.json()
+  const data = await request.formData()
+  const file = data.get('file') as File
+
+  const enabled = data.get('enabled') === "true" ? true : false
 
   try {
-    const id = Number(data.id)
 
-    const tech = await prisma.techs.findUnique({ where: { id } })
+    const payload = {
+      id: Number(data.get('id')),
+      name: String(data.get('name')),
+      description: String(data.get('description')),
+      show_type: Number(data.get('show_type')),
+      area_type: Number(data.get('area_type')),
+      enabled,
+    }
+
+    const tech = await prisma.techs.findUnique({ where: { id: payload.id }, include: { image: true } })
 
     if (!tech?.id) {
       return NextResponse.json({ message: 'Tech not Found', status: 'fail' })
     }
 
-    const payload = {
-      id,
-      description: String(data.description),
-      name: String(data.name),
-      show_type: Number(data.show_type),
-      enabled: data.enabled
-    }
+    await prisma.techs.update({ where: { id: tech.id }, data: { ...payload } })
 
-    await prisma.techs.update({ where: { id: tech.id }, data: payload })
+    if (file?.name) {
+
+      await deleteImage(tech.image?.public_id!)
+
+      const { publicId, success, url } = await updateImage(file, 'techs')
+
+      if (!success) {
+        return NextResponse.json({ message: 'Update image Fail', status: 'fail' })
+      }
+
+      const payloadImage = {
+        public_id: publicId,
+        url
+      }
+
+      await prisma.tech_images.update({ where: { id: tech.image?.id }, data: payloadImage })
+
+    }
 
     return NextResponse.json({ message: 'Tech updated', status: 'success' })
   } catch (error) {
