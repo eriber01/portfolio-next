@@ -46,14 +46,12 @@ export const validateTech = async (state: Techs) => {
         toast.error(`The field ${key} is required`)
         return false
       }
-    } else if (typeof Object) {
-      if (!value) {
-        toast.error(`The field ${key} is required`)
-        return false
-      }
-    } else if (typeof Boolean(value)) {
+    } else if (typeof value === 'boolean') {
+      console.log('entro boolean');
+
       return true
     } else if (!value) {
+      console.log('entro all');
       toast.error(`The field ${key} is required`)
       return false
     }

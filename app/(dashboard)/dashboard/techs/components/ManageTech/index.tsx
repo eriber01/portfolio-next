@@ -41,10 +41,10 @@ export const ManageTech = ({ techs, refetch, getTechById }: Props) => {
               <div className="mt-2">
                 <p className="border-b border-black">{item.name}</p>
               </div>
-              <div className="w-4/5 text-center my-3 border rounded p-3 break-all bg-slate-50 shadow">
+              <div className="w-4/5 text-center my-3 border rounded p-3 break-words bg-slate-50 shadow">
                 <p>{item.description}</p>
               </div>
-              <div className='flex justify-between w-4/5 border bg-slate-50 px-2 rounded shadow mt-3'>
+              <div className='flex flex-col text-center w-3/5 border bg-slate-50 px-2 rounded shadow mt-3'>
                 <div>
                   <strong>View:</strong>
                   <span>{type?.name}</span>
