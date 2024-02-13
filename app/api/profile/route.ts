@@ -7,6 +7,7 @@ export async function GET() {
     const res = await prisma.profile.findFirst()
     return NextResponse.json({ message: 'Get profile Success', res, status: 'success' })
   } catch (error) {
+    console.log(error);
     return NextResponse.json({ message: 'Error get Profile', res: [], status: 'fail' })
   }
 }

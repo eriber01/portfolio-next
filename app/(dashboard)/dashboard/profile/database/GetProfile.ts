@@ -9,13 +9,18 @@ interface GetProfileProps {
 }
 
 export const GetProfile = async (): Promise<Profile | null> => {
+  try {
 
-  const { data } = await api.get<GetProfileProps>('/profile')
+    const { data } = await api.get<GetProfileProps>('/profile')
 
-  if (data.status === 'success') {
-    return data.res
+    if (data.status === 'success') {
+      return data.res
+    }
+
+    ApiResponseMessage(data)
+    return null
+  } catch (error) {
+    console.log(error);
+    return null
   }
-
-  ApiResponseMessage(data)
-  return null
 }
