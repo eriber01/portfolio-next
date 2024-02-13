@@ -1,6 +1,5 @@
 'use client'
 import { useEffect, useState } from "react"
-import { TechArr } from "../../database"
 import { Select, SelectItem, Avatar, Button } from "@nextui-org/react"
 import { Techs } from "../../../techs/interface"
 import { getTechForCreateProjects } from "../../../techs/database/GetTechsProjects"
