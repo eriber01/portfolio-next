@@ -1,5 +1,5 @@
 'use client'
-import { FormEvent, useState } from "react"
+import { Dispatch, FormEvent, SetStateAction, useState } from "react"
 import CustomInput from "@/app/(dashboard)/components/CustomInput"
 import { CustomInputFile } from "@/app/(dashboard)/components/CustomInputFile"
 import CustomTextarea from "@/app/(dashboard)/components/CustomTextarea"
@@ -7,71 +7,31 @@ import SelectTech from "../SelectTechs"
 import TableTech from "../TableTech"
 import { Button } from "@nextui-org/react"
 import { Projects } from "../../interfaces"
-import { toast } from "react-toastify"
-import { onSaveProject } from "../../database/SaveProfile"
+import { onSaveProject } from "../../database/SaveProjects"
 import { Techs } from "../../../techs/interface"
 
-const INITIAL_STATE: Projects = {
-  description: '',
-  git: '',
-  image: null,
-  link: '',
-  name: "",
-  techs: [],
+interface Props {
+  toggle: Dispatch<SetStateAction<boolean>>
+  refetch: () => void
+  project: Projects
+  onChange: (path: string, value: any, reset?: boolean) => void
+  addTech: (value: Techs) => void
+  deleteTech: (id: number) => void
 }
-
-const CreateProjects = () => {
-
-  const [state, setState] = useState(INITIAL_STATE);
-
-  const addTech = (value: Techs) => {
-
-    const validate = state.techs.find(item => item.id === value.id)
-
-    if (validate) {
-      toast.error(`The techs ${validate.name} exist for this project`)
-      return
-    }
-
-    const tech = [...state.techs];
-    tech.push(value)
-
-    setState(prev => ({
-      ...prev,
-      techs: tech
-    }))
-
-  }
-
-  const addImage = (file: File) => {
-    setState(prev => ({
-      ...prev,
-      image: file
-    }))
-  }
-
-  const deleteTech = (id: number) => {
-
-    const tech = [...state.techs]
-
-    const filter = tech.filter(item => item.id !== id)
-
-    setState(prev => ({
-      ...prev,
-      techs: filter
-    }))
-  }
-
-  const onChange = (path: string, value: string | number) => {
-    setState(prev => ({
-      ...prev,
-      [path]: value
-    }))
-  }
+const CreateProjects = ({ onChange, refetch, project, toggle, addTech, deleteTech }: Props) => {
 
   const onSave = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    await onSaveProject(state)
+
+    let save = false
+
+    save = await onSaveProject(project)
+
+    if (save) {
+      await refetch()
+      onChange('project', null, true)
+      toggle(false)
+    }
   }
 
   return (
@@ -86,7 +46,7 @@ const CreateProjects = () => {
               id="name"
               label="Name"
               placeHolder="Project Name"
-              value={state.name}
+              value={project.name}
               styles="w-[80%]"
               onChange={onChange}
             />
@@ -95,7 +55,7 @@ const CreateProjects = () => {
             <div className="w-2/4">
               <CustomTextarea
                 placeholder="Project Descriptions"
-                value={state.description}
+                value={project.description}
                 style="w-full"
                 rows={6}
                 onChange={onChange}
@@ -106,7 +66,7 @@ const CreateProjects = () => {
                 id="link"
                 label="Link Url"
                 placeHolder="http://www.projectname.com"
-                value={state.link}
+                value={project.link}
                 styles="w-full"
                 onChange={onChange}
               />
@@ -114,18 +74,20 @@ const CreateProjects = () => {
                 id="git"
                 label="Git Url"
                 placeHolder="http://www.github.com"
-                value={state.git}
+                value={project.git}
                 styles="w-full"
                 onChange={onChange}
               />
-              <CustomInputFile addImage={addImage} />
+              <CustomInputFile addImage={onChange} />
             </div>
           </div>
           <div className="mt-10">
             <SelectTech addTech={addTech} />
           </div>
           <div className="mt-5">
-            <TableTech tech={state.techs} deleteTech={deleteTech} />
+            {
+              <TableTech tech={project.tech} deleteTech={deleteTech} />
+            }
           </div>
           <div className="my-10">
             <Button

@@ -31,7 +31,6 @@ export default function Page() {
   console.log(state);
 
   const onChange = (path: string, value: any, reset?: boolean) => {
-    console.log({ path, value });
     if (reset) {
       setState(prev => ({
         ...prev,
@@ -60,8 +59,8 @@ export default function Page() {
     try {
 
       const tech = await GetTechById(id)
-      console.log(tech);
       if (tech?.id) {
+
         setState(prev => ({
           ...prev,
           tech

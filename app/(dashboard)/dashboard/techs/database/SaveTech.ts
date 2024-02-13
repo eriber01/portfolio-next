@@ -21,12 +21,7 @@ export async function onSaveTech(state: Techs) {
 
   try {
     toast.loading('Saving the tech')
-    const { data } = await api.post<savedMessageProps>('/tech', payload,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
+    const { data } = await api.post<savedMessageProps>('/tech', payload)
 
     ApiResponseMessage(data)
 

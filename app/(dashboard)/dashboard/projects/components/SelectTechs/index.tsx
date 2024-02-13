@@ -1,29 +1,53 @@
 'use client'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { TechArr } from "../../database"
-import { Select, SelectItem, Avatar, Input, Button } from "@nextui-org/react"
-import { Techs } from '../../interfaces';
+import { Select, SelectItem, Avatar, Button } from "@nextui-org/react"
+import { Techs } from "../../../techs/interface"
+import { getTechForCreateProjects } from "../../../techs/database/GetTechsProjects"
 
 interface PropState {
   techSelected: Techs | null
+  techs: Techs[]
 }
 
 interface Props {
   addTech: (value: Techs) => void
 }
 
+const INITIAL_STATE: PropState = {
+  techs: [],
+  techSelected: null
+}
+
 const SelectTech = ({ addTech }: Props) => {
-  const tech = TechArr
-  const [state, setState] = useState<PropState>({ techSelected: null })
+  const [state, setState] = useState(INITIAL_STATE)
 
   const onChangeTech = (id: number) => {
 
-    const find = tech.find(item => item.id === id)
+    const find = state.techs.find(item => item.id === id)
+
     if (find) {
-      setState({ techSelected: find })
+      setState(prev => ({
+        ...prev,
+        techSelected: find
+      }))
     }
 
   }
+
+  const getTechs = async () => {
+
+    const techs = await getTechForCreateProjects()
+
+    setState(prev => ({
+      ...prev,
+      techs
+    }))
+  }
+
+  useEffect(() => {
+    getTechs()
+  }, [])
 
   return (
     <div className="flex items-center">
@@ -36,12 +60,12 @@ const SelectTech = ({ addTech }: Props) => {
 
       >
         {
-          tech.map((item) => (
+          state.techs.map((item) => (
             <SelectItem
               className="text-black bg-transparent"
               color="primary"
               key={item.id!}
-              startContent={<Avatar alt={item.name} className="w-6 h-6" src={item.imageUrl} />}
+              startContent={<Avatar alt={item.name} className="w-6 h-6" src={item.image?.url} />}
             >
               {item.name}
             </SelectItem>

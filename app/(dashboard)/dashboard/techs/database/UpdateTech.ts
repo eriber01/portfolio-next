@@ -5,7 +5,6 @@ import { savedMessageProps } from "@/app/interfaces";
 import { toast } from "react-toastify";
 
 export async function UpdateTech(tech: Techs) {
-  console.log(tech);
 
   const validate = await validateTech(tech)
 
@@ -21,8 +20,6 @@ export async function UpdateTech(tech: Techs) {
     Object.entries(tech).forEach(([key, value]) => {
       payload.append(key, value)
     })
-
-    console.log(payload);
 
     const { data } = await api.put<savedMessageProps>('/tech', payload)
 

@@ -99,7 +99,9 @@ export async function PUT(request: Request) {
 
 export async function GET() {
   try {
+
     const techs = await prisma.techs.findMany({ include: { image: true }, orderBy: [{ enabled: 'desc' }, { name: 'desc' }] })
+
     return NextResponse.json({ message: 'Get Tech Success', techs, status: 'success' })
   } catch (error) {
     console.log(error);

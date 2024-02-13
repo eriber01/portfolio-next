@@ -1,12 +1,7 @@
 import { NextResponse } from "next/server";
+import { ParamsGetById } from "../../utils";
 
-interface ParamsGet {
-  params: {
-    id: number
-  }
-}
-
-export async function GET(_: Request, { params: { id } }: ParamsGet) {
+export async function GET(_: Request, { params: { id } }: ParamsGetById) {
 
   try {
 

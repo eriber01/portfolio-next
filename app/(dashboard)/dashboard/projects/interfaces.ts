@@ -4,11 +4,13 @@ export interface Projects {
   id?: number | null
   name: string
   description: string
-  image: File | null | ProjectImage
+  file?: File | null | string
   link: string
   git: string
-  techs: Techs[]
+  techs?: ProjectsTechs[]
+  tech: Techs[]
   enabled?: boolean
+  image?: ProjectImage
 }
 
 export interface ProjectImage {
@@ -16,4 +18,20 @@ export interface ProjectImage {
   url: string
   public_id: string
   project_id: number
+}
+
+export interface ProjectsTechs {
+  id?: number
+  tech_id: number
+  project_id: number
+  techs?: Techs
+}
+
+export const INITIAL_STATE: Projects = {
+  name: '',
+  description: '',
+  git: '',
+  link: '',
+  tech: [],
+  file: null
 }

@@ -56,7 +56,7 @@ export const ManageTech = ({ techs, refetch, getTechById }: Props) => {
               </div>
               <div className="my-5 flex justify-between w-full px-5">
                 <ButtonManage actions="edit" name="Edit" tech={item} refetch={refetch} getTechById={getTechById} />
-                <ButtonManage actions="enabled" name="" enabled={item.enabled} tech={item} refetch={refetch} />
+                <ButtonManage actions="enabled" name="" tech={item} refetch={refetch} />
                 <ButtonManage actions="delete" name="Delete" tech={item} refetch={refetch} />
               </div>
             </div>

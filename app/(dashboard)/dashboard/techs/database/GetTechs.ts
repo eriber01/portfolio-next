@@ -1,8 +1,12 @@
+// 'use server'
+
 import { api } from "@/app/utils"
 import { Techs } from "../interface"
 import { Status } from "@/app/interfaces"
+import { toast } from "react-toastify"
+import prisma from '@/libs/db';
 
-interface GetProfileProps {
+interface GetTechsProps {
   techs: Techs[],
   tech: Techs
   message: string
@@ -10,10 +14,10 @@ interface GetProfileProps {
 }
 
 export const GetTechs = async (): Promise<Techs[]> => {
-  const { data } = await api.get<GetProfileProps>('/tech')
+
+  const { data } = await api.get<GetTechsProps>('/tech')
 
   if (data.status === 'success') {
-    console.log(data);
     return data.techs
   }
 
@@ -21,7 +25,7 @@ export const GetTechs = async (): Promise<Techs[]> => {
 }
 
 export const GetTechById = async (id: number): Promise<Techs | null> => {
-  const { data } = await api.get<GetProfileProps>(`/tech/${id}`)
+  const { data } = await api.get<GetTechsProps>(`/tech/${id}`)
 
   console.log(data);
   if (data.status === 'success') {
@@ -32,3 +36,5 @@ export const GetTechById = async (id: number): Promise<Techs | null> => {
 
   return null
 }
+
+

@@ -1,6 +1,8 @@
 'use client'
 import { Button, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from '@nextui-org/react'
-import { Techs } from '../../interfaces'
+import { Techs } from '../../../techs/interface'
+import Image from 'next/image'
+
 
 interface Props {
   tech: Techs[],
@@ -32,7 +34,20 @@ const TableTech = ({ tech, deleteTech }: Props) => {
           {(item) => (
             <TableRow key={item.id} className='bg-transparent text-black'>
               <TableCell className='w-full text-base'>
-                {item.name}
+                <div className='flex items-center'>
+                  <div>
+                    <Image
+                      alt={item.name}
+                      src={item?.image?.url!}
+                      height={25}
+                      width={25}
+                      className="rounded mr-2"
+                    />
+                  </div>
+                  <div>
+                    {item.name}
+                  </div>
+                </div>
               </TableCell>
               <TableCell className='text-center'>
                 <Button

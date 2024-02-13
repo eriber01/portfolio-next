@@ -9,12 +9,11 @@ interface Props {
   tech: Techs
   name: string
   actions: actions
-  enabled?: boolean
   refetch: () => void
   getTechById?: (id: number) => void
 }
 
-const Buttons = ({ actions, name, enabled, tech, refetch, getTechById }: Props) => {
+const Buttons = ({ actions, name, tech, refetch, getTechById }: Props) => {
   switch (actions) {
     case 'edit':
       return <button
@@ -30,7 +29,7 @@ const Buttons = ({ actions, name, enabled, tech, refetch, getTechById }: Props) 
       </button>;
     case "enabled":
       return <button
-        className={`${enabled ? "bg-green-600" : "bg-orange-600"} text-white text-sm rounded px-2`}
+        className={`${tech.enabled ? "bg-green-600" : "bg-orange-600"} text-white text-sm rounded px-2`}
         onClick={async () => {
           const data = {
             ...tech,
@@ -40,7 +39,7 @@ const Buttons = ({ actions, name, enabled, tech, refetch, getTechById }: Props) 
           await refetch()
         }}
       >
-        {enabled ? 'Active' : 'Disable'}
+        {tech.enabled ? 'Active' : 'Disable'}
       </button>;
     case "delete":
       return <button
@@ -57,10 +56,10 @@ const Buttons = ({ actions, name, enabled, tech, refetch, getTechById }: Props) 
   }
 }
 
-export const ButtonManage = ({ name, actions, enabled, tech, refetch, getTechById }: Props) => {
+export const ButtonManage = ({ name, actions, tech, refetch, getTechById }: Props) => {
   return (
     <div>
-      {<Buttons actions={actions} name={name} enabled={enabled} tech={tech} refetch={refetch} getTechById={getTechById} />}
+      {<Buttons actions={actions} name={name} tech={tech} refetch={refetch} getTechById={getTechById} />}
     </div>
   )
 }

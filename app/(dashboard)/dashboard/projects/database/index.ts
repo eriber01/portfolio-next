@@ -69,6 +69,3 @@ export const ProjectsArr: Projects[] = [
   }
 ]
 
-export const create = () => {
-  // 'use server'
-}

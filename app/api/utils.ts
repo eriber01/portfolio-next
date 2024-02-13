@@ -3,6 +3,12 @@ import { writeFileSync } from "fs"
 import path from "path"
 import fs from 'fs'
 
+export interface ParamsGetById {
+  params: {
+    id: number
+  }
+}
+
 interface returnImage {
   url: string
   publicId: string
