@@ -6,7 +6,6 @@ import CardProjectManage from "./components/CardProjectManage";
 import CreateProjects from "./components/CreateProjects";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/ReactToastify.css'
-import { ProjectsArr } from "./database";
 import { INITIAL_STATE as INITIAL, Projects } from "./interfaces";
 import { Techs } from "../techs/interface";
 import { GetProjectById, GetProjects } from "./database/GetProjects";
