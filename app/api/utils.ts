@@ -1,7 +1,4 @@
 import cloudinary from "@/libs/cloudinary"
-import { writeFileSync } from "fs"
-import path from "path"
-import fs from 'fs'
 
 export interface ParamsGetById {
   params: {
