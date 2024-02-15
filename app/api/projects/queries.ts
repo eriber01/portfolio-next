@@ -7,7 +7,7 @@ export const GET_PROJECT_BY_ID = `
       'public_id', pi.public_id,
       'url', pi.url
       )
-    from portafolio.project_images pi 
+    from  project_images pi 
     where pi.project_id = p.id 
   ) as image,
   (select array_agg(json_build_object(
@@ -24,15 +24,15 @@ export const GET_PROJECT_BY_ID = `
         'tech_id', ti.tech_id,
         'url', ti.url
       )
-      from portafolio.tech_images ti
+      from  tech_images ti
       where ti.tech_id = te.id
     )
   ))
-  from portafolio.tech_projects tp
-  join portafolio.techs te ON te.id = tp.tech_id
+  from  tech_projects tp
+  join  techs te ON te.id = tp.tech_id
   where tp.project_id = p.id
   ) as tech
-  from portafolio.projects p
+  from  projects p
   where p.id = $1
   group by p.id;
 `
@@ -47,7 +47,7 @@ export const GET_PROJECTS = `
       'public_id', pi.public_id,
       'url', pi.url
       )
-    from portafolio.project_images pi 
+    from  project_images pi 
     where pi.project_id = p.id 
   ) as image,
   (select array_agg(json_build_object(
@@ -64,15 +64,15 @@ export const GET_PROJECTS = `
         'tech_id', ti.tech_id,
         'url', ti.url
       )
-      from portafolio.tech_images ti
+      from  tech_images ti
       where ti.tech_id = te.id
     )
   ))
-  from portafolio.tech_projects tp
-  join portafolio.techs te ON te.id = tp.tech_id
+  from  tech_projects tp
+  join  techs te ON te.id = tp.tech_id
   where tp.project_id = p.id
   ) as tech
-  from portafolio.projects p
+  from  projects p
   group by p.id
   order by enabled desc, name asc;
 `
