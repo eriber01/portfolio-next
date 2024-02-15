@@ -36,13 +36,13 @@ export async function updateImage(file: File, folder: string): Promise<returnIma
     const updateImage = () => {
       return new Promise((resolve, reject) => {
         const result = cloudinary.uploader.upload(fileUri, {
-          invalidate: true
+          invalidate: true,
+          folder: `newPortfolio/${folder}`,
+          use_filename: true
         }).then((result) => {
-          console.log('el resultado: ', result);
           resolve(result);
         })
           .catch((error) => {
-            console.log('dentro del bloque antes del error:', error);
             reject(error);
           });
       })
