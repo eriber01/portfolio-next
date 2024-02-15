@@ -45,7 +45,9 @@ export async function updateImage(file: File, folder: string): Promise<returnIma
         console.log('dentro del bloque antes del error');
 
         if (err) reject(err)
-        console.log('dentro del bloque despues del error');
+        console.log('dentro del bloque despues del error', err);
+
+        console.log('el resultado: ', result);
 
         resolve(result)
       }).end(buffer)
