@@ -38,10 +38,7 @@ export async function updateImage(file: File, folder: string): Promise<returnIma
     // })
 
     const res: any = await new Promise((resolve, reject) => {
-      cloudinary.uploader.upload_stream({
-        folder: `newPortfolio/${folder}`,
-        use_filename: true
-      }, (err, result) => {
+      cloudinary.uploader.upload_stream({}, (err, result) => {
         console.log('dentro del bloque antes del error');
 
         if (err) reject(err)
