@@ -6,10 +6,13 @@ import { Techs } from "../interface"
 export async function getTechForCreateProjects() {
   try {
 
-    const techs = await prisma?.techs.findMany({ where: { OR: [{ show_type: 2 }, { show_type: 3 }] }, include: { image: true } }) as Techs[]
+    console.log('antes');
 
+    const techs = await prisma?.techs.findMany({ where: { OR: [{ show_type: 2 }, { show_type: 3 }] }, include: { image: true } }) as Techs[]
+    console.log('despues');
     return techs
   } catch (error) {
+    console.log('el error: ', error);
     toast.error('Fail get Techs')
     return []
   }
