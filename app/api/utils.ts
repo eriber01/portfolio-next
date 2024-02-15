@@ -42,7 +42,11 @@ export async function updateImage(file: File, folder: string): Promise<returnIma
         folder: `newPortfolio/${folder}`,
         use_filename: true
       }, (err, result) => {
+        console.log('dentro del bloque antes del error');
+
         if (err) reject(err)
+        console.log('dentro del bloque despues del error');
+
         resolve(result)
       }).end(buffer)
     })
