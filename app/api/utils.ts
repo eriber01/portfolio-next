@@ -18,11 +18,15 @@ interface resImg {
 }
 
 export async function updateImage(file: File, folder: string): Promise<returnImage> {
-  
+  console.log("Entreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee!");
+
   try {
+    console.log("antes del buffer!");
 
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
+
+    console.log("despues del buffer!");
 
     // const filepath = path.join(process.cwd(), 'public', file.name)
 
@@ -42,6 +46,9 @@ export async function updateImage(file: File, folder: string): Promise<returnIma
         resolve(result)
       }).end(buffer)
     })
+
+    console.log("despues de subir antes del mensaje!");
+
     console.log('Respuesta del servidor:', res);
 
     // await fs.unlink(filepath, error => {
@@ -57,7 +64,7 @@ export async function updateImage(file: File, folder: string): Promise<returnIma
       url: res.secure_url
     }
   } catch (error) {
-    console.log('Error al subir la imagen a Cloudinar',error);
+    console.log('Error al subir la imagen a Cloudinar', error);
 
     return {
       publicId: '',

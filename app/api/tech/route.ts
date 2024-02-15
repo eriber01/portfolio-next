@@ -98,7 +98,6 @@ export async function PUT(request: Request) {
 }
 
 export async function GET() {
-  console.log("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!");
 
   try {
 
