@@ -4,8 +4,8 @@ import { toast } from "react-toastify"
 import { Techs } from "../interface"
 
 export async function getTechForCreateProjects() {
+  'use server'
   try {
-
     console.log('antes');
 
     const techs = await prisma?.techs.findMany({ where: { OR: [{ show_type: 2 }, { show_type: 3 }] }, include: { image: true } }) as Techs[]
