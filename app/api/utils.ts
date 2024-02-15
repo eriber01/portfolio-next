@@ -23,10 +23,32 @@ export async function updateImage(file: File, folder: string): Promise<returnIma
   try {
     console.log("antes del buffer!");
 
+    const mime = file.type
+    const encoding = 'base64'
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
 
+    const base64Data = Buffer.from(bytes).toString('base64')
+    const fileUri = 'data:' + mime + ';' + encoding + ',' + base64Data
+
     console.log("despues del buffer!");
+
+    const updateImage = () => {
+      return new Promise((resolve, reject) => {
+        const result = cloudinary.uploader.upload(fileUri, {
+          invalidate: true
+        }).then((result) => {
+          console.log('el resultado: ', result);
+          resolve(result);
+        })
+          .catch((error) => {
+            console.log('dentro del bloque antes del error:', error);
+            reject(error);
+          });
+      })
+    };
+
+    const res: any = await updateImage();
 
     // const filepath = path.join(process.cwd(), 'public', file.name)
 
@@ -37,18 +59,21 @@ export async function updateImage(file: File, folder: string): Promise<returnIma
     //   use_filename: true
     // })
 
-    const res: any = await new Promise((resolve, reject) => {
-      cloudinary.uploader.upload_stream({}, (err, result) => {
-        console.log('dentro del bloque antes del error');
+    // const res: any = await new Promise((resolve, reject) => {
+    //   cloudinary.uploader.upload_stream({
+    //     folder: `newPortfolio/${folder}`,
+    //     use_filename: true
+    //   }, (err, result) => {
+    //     console.log('dentro del bloque antes del error');
 
-        if (err) reject(err)
-        console.log('dentro del bloque despues del error', err);
+    //     if (err) reject(err)
+    //     console.log('dentro del bloque despues del error', err);
 
-        console.log('el resultado: ', result);
+    //     console.log('el resultado: ', result);
 
-        resolve(result)
-      }).end(buffer)
-    })
+    //     resolve(result)
+    //   }).end(buffer)
+    // })
 
     console.log("despues de subir antes del mensaje!");
 
