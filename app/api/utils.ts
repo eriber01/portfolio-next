@@ -41,6 +41,7 @@ export async function updateImage(file: File, folder: string): Promise<returnIma
         resolve(result)
       }).end(buffer)
     })
+    console.log('Respuesta del servidor:', res);
 
     // await fs.unlink(filepath, error => {
     //   if (error) {
@@ -55,7 +56,7 @@ export async function updateImage(file: File, folder: string): Promise<returnIma
       url: res.secure_url
     }
   } catch (error) {
-    console.log(error);
+    console.log('Error al subir la imagen a Cloudinar', error);
 
     return {
       publicId: '',
