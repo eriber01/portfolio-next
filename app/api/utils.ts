@@ -18,6 +18,7 @@ interface resImg {
 }
 
 export async function updateImage(file: File, folder: string): Promise<returnImage> {
+  
   try {
 
     const bytes = await file.arrayBuffer()
@@ -56,7 +57,7 @@ export async function updateImage(file: File, folder: string): Promise<returnIma
       url: res.secure_url
     }
   } catch (error) {
-    console.log('Error al subir la imagen a Cloudinar', error);
+    console.log('Error al subir la imagen a Cloudinar',error);
 
     return {
       publicId: '',

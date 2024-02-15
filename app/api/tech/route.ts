@@ -98,6 +98,8 @@ export async function PUT(request: Request) {
 }
 
 export async function GET() {
+  console.log("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!");
+
   try {
 
     const techs = await prisma.techs.findMany({ include: { image: true }, orderBy: [{ enabled: 'desc' }, { name: 'desc' }] })
