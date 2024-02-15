@@ -1,32 +1,27 @@
-'use server'
 
 import { toast } from "react-toastify"
 import { Techs } from "../interface"
+import { api } from "@/app/utils";
+import { Status } from "cloudinary";
+
+interface GetTechsProps {
+  techs: Techs[],
+  message: string
+  status: Status
+}
 
 export async function getTechForCreateProjects() {
-  'use server'
   try {
-    console.log('antes');
+    const { data } = await api.get<GetTechsProps>('/tech')
 
-    const techs = await prisma?.techs.findMany({ where: { OR: [{ show_type: 2 }, { show_type: 3 }] }, include: { image: true } }) as Techs[]
-    console.log('despues');
-    return techs
+    if (data.status === 'success') {
+      return data.techs
+    }
+  
+    return []
   } catch (error) {
     console.log('el error: ', error);
     toast.error('Fail get Techs')
     return []
   }
 }
-
-// export const getTechForCreateProjects = async (): Promise<Techs[]> => {
-//   try {
-
-//     const techs = await prisma?.techs.findMany({ where: { OR: [{ show_type: 2 }, { show_type: 3 }] }, include: { image: true } }) as Techs[]
-
-//     return techs
-//   } catch (error) {
-//     toast.error('Fail get Techs')
-//     return []
-//   }
-
-// }
