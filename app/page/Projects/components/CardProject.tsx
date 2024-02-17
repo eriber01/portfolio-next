@@ -1,8 +1,5 @@
 'use client'
 
-import Image from "next/image"
-import TechImages from "../../Abouts/components/TechImages"
-import { getTech } from "../../Abouts/database"
 import CardButtons from "./CardButtons"
 
 import style from '../style.module.css'
