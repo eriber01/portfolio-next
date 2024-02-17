@@ -3,23 +3,11 @@ import { Button } from "@nextui-org/react";
 import CustomInput from "../../components/CustomInput";
 import { FormEvent, useEffect, useState } from "react";
 import HeaderName from "../../components/HeaderName";
-import { Profile } from "./interface";
+import { INITIAL_STATE, Profile } from "./interface";
 import { onSaveProfile } from "./database/SaveProfile";
 import 'react-toastify/ReactToastify.css'
 import { ToastContainer } from 'react-toastify';
 import { GetProfile } from "./database/GetProfile";
-
-export const INITIAL_STATE: Profile = {
-  name: '',
-  job: '',
-  phone: '',
-  email: '',
-  git_url: '',
-  linkedin: '',
-  linkedin_url: '',
-  cv: '',
-  year: 0
-}
 
 export default function Page() {
   const [state, setState] = useState(INITIAL_STATE)

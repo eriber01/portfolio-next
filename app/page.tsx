@@ -9,7 +9,7 @@ import { Contact } from "./page/Contact";
 import { useEffect, useState } from "react";
 import { GetProfile } from "./(dashboard)/dashboard/profile/database/GetProfile";
 import { Profile } from "./(dashboard)/dashboard/profile/interface";
-import { INITIAL_STATE } from "./(dashboard)/dashboard/profile/page";
+import { INITIAL_STATE } from "./(dashboard)/dashboard/profile/interface";
 
 export default function Home() {
   const [profile, setProfile] = useState<Profile>(INITIAL_STATE)

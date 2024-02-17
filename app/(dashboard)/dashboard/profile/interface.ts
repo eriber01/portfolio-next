@@ -10,3 +10,15 @@ export interface Profile {
   cv: string
   year: number
 }
+
+export const INITIAL_STATE: Profile = {
+  name: '',
+  job: '',
+  phone: '',
+  email: '',
+  git_url: '',
+  linkedin: '',
+  linkedin_url: '',
+  cv: '',
+  year: 0
+}
