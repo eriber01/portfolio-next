@@ -1,6 +1,6 @@
 
-const AboutMeText = () => {
-  const year = 3
+const AboutMeText = ({ year }: { year: number }) => {
+
   return (
     <main className="w-full h-full md:h-4/5 xl:h-4/5">
       {/* Headers */}

@@ -4,22 +4,23 @@ import { CiShare1 } from "react-icons/ci";
 
 import TechImages from "./TechImages";
 import TechAreaModal from "./TechAreaModal";
-import { getTech } from "../database";
-import { Tech } from "../interfaces";
+
+import { Techs } from "@/app/(dashboard)/dashboard/techs/interface";
+import { areaTypes } from "../database";
 
 interface Props {
-  area: string
+  area: areaTypes
   descriptions: string
+  techs: Techs[]
+  year: number
 }
 
-const TechComponent = ({ area, descriptions }: Props) => {
+const TechComponent = ({ area, descriptions, techs, year }: Props) => {
   const [isOpen, toggle] = useState(false)
-
-  const tech: Tech[] = getTech()
 
   return (
     <div className="transition-custom hover:green-label hover:scale-105 hover:shadow-xl bg-gradient-to-tl from-[#130e2257] to-[#120C23] w-full pl-5 my-2 md:w-full xl:w-full h-full rounded">
-      <TechAreaModal toggle={toggle} tech={tech} area={area} isOpen={isOpen} />
+      <TechAreaModal year={year} toggle={toggle} tech={techs} area={area} isOpen={isOpen} />
       <div className="h-1/4">
         <div className="flex justify-between items-center mt-5">
           <p
@@ -34,11 +35,11 @@ const TechComponent = ({ area, descriptions }: Props) => {
             />
           </div>
         </div>
-        <div className="medium-font-size secondary-font-color mt-1">
+        <div className="medium-font-size secondary-font-color mt-1 mb-3">
           {descriptions}
         </div>
       </div>
-      < TechImages tech={tech} />
+      < TechImages tech={techs} />
     </div>
   )
 }

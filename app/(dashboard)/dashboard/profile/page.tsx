@@ -9,7 +9,7 @@ import 'react-toastify/ReactToastify.css'
 import { ToastContainer } from 'react-toastify';
 import { GetProfile } from "./database/GetProfile";
 
-const INITIAL_STATE: Profile = {
+export const INITIAL_STATE: Profile = {
   name: '',
   job: '',
   phone: '',

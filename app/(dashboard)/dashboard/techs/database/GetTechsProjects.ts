@@ -12,7 +12,7 @@ interface GetTechsProps {
 
 export async function getTechForCreateProjects() {
   try {
-    const { data } = await api.get<GetTechsProps>('/tech')
+    const { data } = await api.get<GetTechsProps>('/projects/techs')
 
     if (data.status === 'success') {
       return data.techs

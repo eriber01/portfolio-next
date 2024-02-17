@@ -5,8 +5,11 @@ import Link from 'next/link'
 import WhatsappSvgImg from './components/WhatsappSvgImg'
 import CvSvgImg from './components/CvSvgImg'
 import { Fade, Slide } from 'react-awesome-reveal'
+import { Profile } from '@/app/(dashboard)/dashboard/profile/interface'
 
-export default function HomePage() {
+export default function HomePage({ profile }: { profile: Profile }) {
+  console.log(profile);
+  
   return (
     <div
       className='h-screen w-full bg-home pt-20 flex flex-col md:flex-row xl:flex-row justify-between items-center'
@@ -17,7 +20,7 @@ export default function HomePage() {
         <div className='h-3/4 flex flex-col items-center md:items-start justify-center'>
 
           <Slide delay={0}>
-            <ProfessionsLabel label={'Javascript Web Developer'} />
+            <ProfessionsLabel label={profile.job} />
           </Slide>
 
           <Fade cascade damping={1e-1} delay={1000}>
@@ -40,7 +43,7 @@ export default function HomePage() {
         <div className='w-full flex justify-center md:justify-start xl:justify-start'>
           <div className='w-[50%] xl:w-[70%] md:w-[100%] flex flex-col md:flex-row xl:flex-row justify-between'>
             <Link
-              href="https://api.whatsapp.com/send?phone=+18094339691&text=Hello"
+              href={`https://api.whatsapp.com/send?phone=${profile.phone}&text=Hello`}
               target={'_blank'}
               rel='noreferrer'
               className='mb-2 md:mb-0 xl:mb-0 md:mr-3'
@@ -57,7 +60,7 @@ export default function HomePage() {
             </Link>
 
             <Link
-              href="https://drive.google.com/file/d/1_3KiARp2QsYqf9aCwPddNFbOjyRAUrB2/view?usp=sharing"
+              href={profile.cv}
               target={'_blank'}
               rel='noreferrer'
             >

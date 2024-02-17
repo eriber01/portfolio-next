@@ -6,11 +6,10 @@ import SocialButtons from './components/SocialButtons'
 import { SessionButton } from './components/SessionButton'
 import NavLinksMobile from './components/NavLinksMobile'
 import { useState } from 'react'
+import { Profile } from '@/app/(dashboard)/dashboard/profile/interface'
 
-const Nav = () => {
+const Nav = ({ profile }: { profile: Profile }) => {
   const [isOpen, toggle] = useState(false)
-
-  // const onToggle = () => toggle(!isOpen)
 
   return (
     <main className='bg-transparent general-font-size'>
@@ -28,17 +27,14 @@ const Nav = () => {
           />
         </NavbarContent>
 
-        <NavLinksMobile toggle={toggle} />
+        <NavLinksMobile toggle={toggle} profile={profile} />
 
         <NavbarContent>
           <div className='hidden md:flex flex-col w-full'>
-            {/* <TopNav /> */}
             <div className='flex justify-between'>
               <MeButton />
               <NavLinks />
-              <SocialButtons />
-              {/* <div className='border ml-3'></div> */}
-              <SessionButton />
+              <SocialButtons profile={profile} />
             </div>
           </div>
         </NavbarContent>

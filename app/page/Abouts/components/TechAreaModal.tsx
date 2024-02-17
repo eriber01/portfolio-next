@@ -1,18 +1,20 @@
-// 'use client'
+'use client'
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Button } from '@nextui-org/react';
 import React from 'react'
 import TechImages from './TechImages';
-import { Tech } from '../interfaces';
+import { Techs } from '@/app/(dashboard)/dashboard/techs/interface';
+import { ModalAreaDescriptions, areaTypes } from '../database';
 
 
 interface Props {
-  area: string
-  tech: Tech[]
+  area: areaTypes
+  tech: Techs[]
   isOpen: boolean
   toggle: (value: boolean) => void
+  year: number
 }
 
-const TechAreaModal = ({ tech, area, isOpen, toggle }: Props) => {
+const TechAreaModal = ({ tech, area, isOpen, toggle, year }: Props) => {
 
   return (
     <div className=''>
@@ -31,12 +33,7 @@ const TechAreaModal = ({ tech, area, isOpen, toggle }: Props) => {
           </ModalHeader>
           <ModalBody>
             <p className=''>
-              With two years of experience as a Frontend Developer,
-              I specialize in building dynamic web applications
-              using React, Bootstrap, Next.js, and Tailwind CSS.
-              I create interactive, efficient user interfaces,
-              focusing on intuitive design and staying updated
-              with the latest frontend trends.
+              {ModalAreaDescriptions(area, year)}
             </p>
 
             <p className='my-3'>Technologies:</p>

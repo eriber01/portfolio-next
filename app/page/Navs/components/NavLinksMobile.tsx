@@ -6,12 +6,14 @@ import { SessionButton } from './SessionButton'
 import styles from '../style.module.css'
 import SocialButtons from './SocialButtons'
 import { Dispatch, SetStateAction } from 'react';
+import { Profile } from '@/app/(dashboard)/dashboard/profile/interface';
 
 interface Props {
   toggle: (value: boolean) => void
+  profile: Profile
 }
 
-const NavLinksMobile = ({ toggle }: Props) => {
+const NavLinksMobile = ({ toggle, profile }: Props) => {
 
   return (
     <main>
@@ -42,16 +44,11 @@ const NavLinksMobile = ({ toggle }: Props) => {
               }
             </div>
 
-            <NavbarMenuItem>
-              <div className='flex'>
-                <SessionButton />
-              </div>
-            </NavbarMenuItem>
           </div>
 
           <div className='w-[90%]'>
             <NavbarMenuItem >
-              <SocialButtons />
+              <SocialButtons profile={profile} />
             </NavbarMenuItem>
           </div>
         </div>
