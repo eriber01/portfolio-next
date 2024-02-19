@@ -56,7 +56,7 @@ async function EmailToMe({ email, name, message }: EmailProps) {
 
     console.log('el segundo: ' + filePath);
 
-    const template = await readFileSync(process.cwd() + '/me.html', 'utf8')
+    const template = await readFileSync(filePath, 'utf8')
 
     const { error } = await resend.emails.send({
       from: 'portfolio@eriber-tejeda.com',
