@@ -47,9 +47,10 @@ async function EmailToMe({ email, name, message }: EmailProps) {
     // const template = await readFileSync(path.join(config, `./template/me.html`), 'utf8')
 
     // const config = process.cwd() + '/app/page/Contact/database/template/me.html'
+    const currentDirectory = __dirname;
 
-    console.log(path.dirname(''));
-    
+    console.log('aquiiiiiiiiiiiii', { currentDirectory });
+
 
     const template = await readFileSync(process.cwd() + '/me.html', 'utf8')
 
