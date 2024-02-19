@@ -34,12 +34,9 @@ export const AreaTypes = [
 export const validateTech = async (state: Techs) => {
 
   let key: keyof Techs
-  console.log(state);
 
   for (key in state) {
     const value = state[key]
-
-    console.log(typeof value, value, key);
 
     if (typeof value === 'string') {
       if (!value.trim()) {
@@ -47,11 +44,9 @@ export const validateTech = async (state: Techs) => {
         return false
       }
     } else if (typeof value === 'boolean') {
-      console.log('entro boolean');
 
       return true
     } else if (!value) {
-      console.log('entro all');
       toast.error(`The field ${key} is required`)
       return false
     }

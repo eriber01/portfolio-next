@@ -8,7 +8,6 @@ import { Fade, Slide } from 'react-awesome-reveal'
 import { Profile } from '@/app/(dashboard)/dashboard/profile/interface'
 
 export default function HomePage({ profile }: { profile: Profile }) {
-  console.log(profile);
   
   return (
     <div

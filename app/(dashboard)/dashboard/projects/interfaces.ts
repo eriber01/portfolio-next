@@ -8,7 +8,7 @@ export interface Projects {
   link: string
   git: string
   techs?: ProjectsTechs[]
-  tech: Techs[]
+  tech?: Techs[]
   enabled?: boolean
   image?: ProjectImage
 }

@@ -3,8 +3,9 @@ import { Slide } from "react-awesome-reveal"
 import HeaderLabel from "../UI/HeaderLabel"
 import FormContact from "./components/FormContact"
 import Informations from "./components/Informations"
+import { Profile } from "@/app/(dashboard)/dashboard/profile/interface"
 
-export const Contact = () => {
+export const Contact = ({ profile }: { profile: Profile }) => {
   return (
     <div className='h-screen md:mt-0 xl:mt-0 bg-[#28213E] pt-20 w-full flex justify-center' id='contact'>
       <div className="w-full md:w-10/12 xl:w-10/12">
@@ -24,7 +25,7 @@ export const Contact = () => {
           {/* informations */}
           <div className="flex justify-center items-center md:w-[40%] xl:w-[40%] h-full bg-[#28213E] px-10 md:px-0 xl:px-0">
             <Slide direction="down">
-              <Informations />
+              <Informations profile={profile}/>
             </Slide>
           </div>
         </div>

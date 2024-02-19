@@ -28,7 +28,6 @@ const INITIAL_STATE: stateProps = {
 export default function Page() {
   const [isOpen, toggle] = useState(false)
   const [state, setState] = useState(INITIAL_STATE)
-  console.log(state);
 
   const onChange = (path: string, value: any, reset?: boolean) => {
     if (reset) {

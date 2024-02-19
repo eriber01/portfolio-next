@@ -33,7 +33,7 @@ export default function Home() {
         <HomePage profile={profile} />
         <About profile={profile} />
         <Projects />
-        <Contact />
+        <Contact profile={profile}/>
       </Providers>
     </main>
   )

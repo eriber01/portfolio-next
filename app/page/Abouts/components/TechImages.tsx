@@ -3,16 +3,11 @@ import Image from 'next/image'
 import style from '../style.module.css'
 import { Techs } from '@/app/(dashboard)/dashboard/techs/interface'
 
-interface tech {
-  tech: string
-}
-
 interface Props {
   tech: Techs[]
 }
 
 const TechImages = ({ tech }: Props) => {
-  console.log(tech);
   
   return (
     <div className={`flex items-center h-[60%]`}>
