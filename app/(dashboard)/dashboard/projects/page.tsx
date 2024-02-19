@@ -66,7 +66,7 @@ export default function Page() {
 
     const tech = state.project.tech
 
-    const filter = tech.filter(item => item.id !== id);
+    const filter = tech?.filter(item => item.id !== id);
 
     setState(prev => ({
       ...prev,
@@ -80,14 +80,14 @@ export default function Page() {
 
   const addTech = (value: Techs) => {
 
-    const validate = state.project.tech.find(item => item.id === value.id)
+    const validate = state.project.tech?.find(item => item.id === value.id)
 
     if (validate) {
       toast.error(`The techs ${validate.name} exist for this project`)
       return
     }
 
-    const techs = [...state.project.tech];
+    const techs = [...state?.project?.tech || []];
 
     techs.push(value)
 
