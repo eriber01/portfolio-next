@@ -14,7 +14,7 @@ export const validateProject = (state: Projects) => {
       }
     } else if (typeof 'object') {
       if (key === 'tech') {
-        if (state.tech.length === 0) {
+        if (state?.tech?.length === 0) {
           toast.error('Need add one Techs')
           return false
         }
