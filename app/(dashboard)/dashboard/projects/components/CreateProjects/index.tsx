@@ -86,7 +86,7 @@ const CreateProjects = ({ onChange, refetch, project, toggle, addTech, deleteTec
           </div>
           <div className="mt-5">
             {
-              <TableTech tech={project.tech} deleteTech={deleteTech} />
+              <TableTech tech={project?.tech || []} deleteTech={deleteTech} />
             }
           </div>
           <div className="my-10">
