@@ -47,10 +47,14 @@ async function EmailToMe({ email, name, message }: EmailProps) {
     // const template = await readFileSync(path.join(config, `./template/me.html`), 'utf8')
 
     // const config = process.cwd() + '/app/page/Contact/database/template/me.html'
+
     const currentDirectory = __dirname;
 
     console.log('aquiiiiiiiiiiiii', { currentDirectory });
 
+    const filePath = path.join(process.cwd(), 'me.html');
+
+    console.log('el segundo: ' + filePath);
 
     const template = await readFileSync(process.cwd() + '/me.html', 'utf8')
 
@@ -96,7 +100,7 @@ async function EmailToVisitor({ email, name, message }: EmailProps) {
 export async function SendEmail({ email, name, message }: EmailProps) {
   try {
 
-    await EmailToVisitor({ email, name, message })
+    // await EmailToVisitor({ email, name, message })
     await EmailToMe({ email, name, message })
 
   } catch (error) {
