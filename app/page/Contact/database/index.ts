@@ -47,7 +47,7 @@ async function EmailToMe({ email, name, message }: EmailProps) {
     // const template = await readFileSync(path.join(config, `./template/me.html`), 'utf8')
 
     // const config = process.cwd() + '/app/page/Contact/database/template/me.html'
-    const template = await readFileSync(process.cwd() + '/app/page/Contact/database/template/me.html', 'utf8')
+    const template = await readFileSync(process.cwd() + '/app/me.html', 'utf8')
 
     const { error } = await resend.emails.send({
       from: 'portfolio@eriber-tejeda.com',
