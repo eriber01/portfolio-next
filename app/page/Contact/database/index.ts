@@ -52,7 +52,7 @@ async function EmailToMe({ email, name, message }: EmailProps) {
 
     console.log('aquiiiiiiiiiiiii', { currentDirectory });
 
-    const filePath = path.join(__dirname + 'me.html');
+    const filePath = path.join(__dirname + '/me.html');
 
     console.log('el segundo: ' + filePath);
 
