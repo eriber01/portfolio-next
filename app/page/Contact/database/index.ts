@@ -1,6 +1,6 @@
 'use server'
 
-import { readFileSync } from 'fs';
+import { readFile, readFileSync } from 'fs';
 import path from 'path';
 import { toast } from 'react-toastify';
 
@@ -43,8 +43,11 @@ async function EmailToMe({ email, name, message }: EmailProps) {
   try {
     console.log('envio a mi');
 
-    const config = path.resolve(process.cwd(), 'app/page/Contact/database')
-    const template = await readFileSync(path.join(config, `./template/me.html`), 'utf8')
+    // const config = path.resolve(process.cwd(), 'app/page/Contact/database')
+    // const template = await readFileSync(path.join(config, `./template/me.html`), 'utf8')
+
+    // const config = process.cwd() + '/app/page/Contact/database/template/me.html'
+    const template = await readFileSync(process.cwd() + '/app/page/Contact/database/template/me.html', 'utf8')
 
     const { error } = await resend.emails.send({
       from: 'portfolio@eriber-tejeda.com',
