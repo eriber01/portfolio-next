@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@nextui-org/react'
-import { SendEmail, validateForm } from '../database'
+import { validateForm } from '../database'
 import { FormEvent, useState } from 'react'
 import CustomInput from '@/app/(dashboard)/components/CustomInput'
 import { toast } from 'react-toastify'
@@ -36,10 +36,7 @@ const FormContact = () => {
 
     if (validate.success) {
       toast.loading('Sending Message')
-      const { data } = await api.post('/emails', state)
-      console.log(data);
-
-      // await SendEmail({ ...state })
+      await api.post('/emails', state)
       setState(INITIAL_STATE)
       toast.dismiss()
       toast.success('Thanks for Send a Message')
