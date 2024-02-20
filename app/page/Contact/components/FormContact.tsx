@@ -14,9 +14,9 @@ interface EmailProps {
 }
 
 export const INITIAL_STATE: EmailProps = {
-  email: '',
-  message: '',
-  name: ''
+  email: 'eriberplay@gmail.com',
+  message: 'hola mundo',
+  name: 'eriber tejeda amparo'
 }
 
 const FormContact = () => {

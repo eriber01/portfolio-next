@@ -48,12 +48,19 @@ export async function EmailToVisitor({ email, name, message }: EmailProps) {
 
     const config = path.resolve(process.cwd(), 'app/api/emails')
     const template = await readFileSync(path.join(config, `./template/${validateEmail(email) ? 'google' : 'other'}.html`), 'utf8')
+    const CV = await readFileSync(path.join(config, `./template/Eriber Tejeda - CV.pdf`))
 
     const { error } = await resend.emails.send({
       from: 'noreply@eriber-tejeda.com',
       to: [email],
       subject: `Hi! ${name} this is an automatic email response`,
-      html: template.replace('@@name@@', name)
+      html: template.replace('@@name@@', name),
+      attachments: [
+        {
+          filename: 'Eriber Tejeda CV.pdf',
+          content: CV
+        }
+      ]
     });
 
     if (error) {
