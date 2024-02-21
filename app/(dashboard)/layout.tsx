@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Trispace } from 'next/font/google'
 import './globals.css'
 import Sidebar from './components/Sidebar'
+import Provider from './Providers'
 
 
 
@@ -19,12 +20,14 @@ export default function Layout({
 }) {
   return (
     <div lang="en" className={`scroll-smooth text-white bg-[#1F2128] ${inter.className} flex w-full h-screen`}>
-      <div className='w-1/5'>
-        <Sidebar />
-      </div>
-      <div className='w-4/5 overflow-auto'>
-        {children}
-      </div>
+      <Provider>
+        <div className='w-1/5'>
+          <Sidebar />
+        </div>
+        <div className='w-4/5 overflow-auto'>
+          {children}
+        </div>
+      </Provider>
     </div>
   )
 }

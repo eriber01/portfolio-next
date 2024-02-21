@@ -14,9 +14,11 @@
     "@nextui-org/react": "^2.2.9",
     "@prisma/client": "^5.7.1",
     "axios": "^1.6.3",
+    "bcrypt": "^5.1.1",
     "cloudinary": "^1.41.2",
     "framer-motion": "^10.16.5",
     "next": "14.0.3",
+    "next-auth": "^4.24.6",
     "react": "^18",
     "react-awesome-reveal": "^4.2.7",
     "react-dom": "^18",
@@ -25,6 +27,7 @@
     "resend": "^3.2.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
