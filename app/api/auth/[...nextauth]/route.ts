@@ -34,14 +34,8 @@ const handler = NextAuth({
       },
     }),
   ],
-  pages: {
-    signIn: 'login'
-  },
-  session: {
-    strategy: 'jwt'
-  },
   callbacks: {
-    jwt({ token, user }) {
+    jwt({ account, token, user, profile, session }) {
       if (user) token.user = user
       return token
     },
