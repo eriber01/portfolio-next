@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { ParamsGetById } from "../../utils";
+import prisma from '@/libs/db';
 
 export async function GET(_: Request, { params: { id } }: ParamsGetById) {
 
