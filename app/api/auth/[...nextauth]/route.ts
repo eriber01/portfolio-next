@@ -11,26 +11,31 @@ const handler = NextAuth({
         password: { label: 'Password', type: 'password', placeholder: '******' },
       },
       async authorize(credentials, req) {
+        try {
 
-        if (!credentials?.email) {
-          throw new Error("Email is Required");
-        } else if (!credentials?.password) {
-          throw new Error("Password is Required")
+          if (!credentials?.email) {
+            throw new Error("Email is Required");
+          } else if (!credentials?.password) {
+            throw new Error("Password is Required")
+          }
+
+          const profile = await prisma?.profile.findFirst({ where: { email: credentials?.email } })
+          if (!profile) throw new Error("User not found. Only Eriber can enter in the Throne Room!!!");
+
+          const match = await compare(credentials.password, profile.pass!)
+          if (!match) throw new Error("Invalid Credentials");
+
+          const user = {
+            id: String(profile.id),
+            name: profile.name,
+            email: profile.email
+          }
+
+          return user
+        } catch (error) {
+          console.log('el error: ', error);
+          return null
         }
-
-        const profile = await prisma?.profile.findFirst({ where: { email: credentials?.email } })
-        if (!profile) throw new Error("User not found. Only Eriber can enter in the Throne Room!!!");
-
-        const match = await compare(credentials.password, profile.pass!)
-        if (!match) throw new Error("Invalid Credentials");
-
-        const user = {
-          id: String(profile.id),
-          name: profile.name,
-          email: profile.email
-        }
-
-        return user
       },
     }),
   ],
