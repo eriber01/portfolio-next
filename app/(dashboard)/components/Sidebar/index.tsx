@@ -1,16 +1,17 @@
 'use client'
 
 import Link from "next/link"
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { Navs } from "./interfaces & constans"
 
 import { IconsMenu } from "../IconsMenu";
 import { Button } from "@nextui-org/react";
-
+import { signOut } from "next-auth/react";
 
 const Sidebar = () => {
   const paths = usePathname()
+  const router = useRouter()
   const exactPath = paths.split('/')[2]
 
   return (
@@ -44,7 +45,13 @@ const Sidebar = () => {
         </nav>
       </div>
       <div className="mt-auto pb-10 text-center">
-        <Button color="danger">
+        <Button
+          color="danger"
+          onClick={() => {
+            signOut({ redirect: false })
+            router.push('/')
+          }}
+        >
           Logout
         </Button>
       </div>

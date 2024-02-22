@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from 'next-auth/providers/credentials'
+import { compare } from "bcrypt";
 
 const handler = NextAuth({
   providers: [
@@ -7,25 +8,34 @@ const handler = NextAuth({
       name: 'Credentials',
       credentials: {
         email: { label: 'Email', type: 'email', placeholder: 'Enter your Email' },
-        password: { label: 'Password', type: 'password' },
+        password: { label: 'Password', type: 'password', placeholder: '******' },
       },
-      authorize(credentials, req) {
-        console.log({ credentials, req });
+      async authorize(credentials, req) {
 
-        const user = { id: '1', email: 'eriber' }
-
-        if (user) {
-          return user
+        if (!credentials?.email) {
+          throw new Error("Email is Required");
+        } else if (!credentials?.password) {
+          throw new Error("Password is Required")
         }
 
-        return null
+        const profile = await prisma?.profile.findFirst({ where: { email: credentials?.email } })
+        if (!profile) throw new Error("User not found. Only Eriber can enter in the Throne Room!!!");
 
+        const match = await compare(credentials.password, profile.pass!)
+        if (!match) throw new Error("Invalid Credentials");
+
+        const user = {
+          id: String(profile.id),
+          name: profile.name,
+          email: profile.email
+        }
+
+        return user
       },
     }),
   ],
   callbacks: {
     jwt({ account, token, user, profile, session }) {
-      console.log({ account, token, user, profile, session });
       if (user) token.user = user
       return token
     },

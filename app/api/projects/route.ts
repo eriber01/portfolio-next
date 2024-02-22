@@ -96,7 +96,7 @@ export async function PUT(request: Request) {
     const arrTechs = JSON.parse(techs as string) as Techs[]
 
     await prisma?.$queryRaw(Prisma.sql`
-      delete from portafolio.tech_projects
+      delete from tech_projects
       where project_id = ${project.id}
     `)
 
