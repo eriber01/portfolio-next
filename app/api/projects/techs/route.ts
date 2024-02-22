@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import prisma from '@/libs/db';
 
 export async function GET(_: Request) {
 
@@ -8,7 +9,7 @@ export async function GET(_: Request) {
 
     return NextResponse.json({ message: '', status: 'success', techs })
   } catch (error) {
-    console.log(error);
+    console.log('the error: ', error);
     return NextResponse.json({ message: 'Error get the Projects', status: 'fail', techs: [] })
 
   }

@@ -21,8 +21,7 @@ const handler = NextAuth({
             throw new Error("Password is Required")
           }
 
-          const profile = await prisma?.profile.findFirst({ where: { email: credentials?.email } })
-          // const profile = await GetProfile(credentials?.email)
+          const profile = await prisma.profile.findFirst({ where: { email: credentials?.email } })
           if (!profile) throw new Error("User not found. Only Eriber can enter in the Throne Room!!!");
 
           const match = await compare(credentials.password, profile.pass!)
