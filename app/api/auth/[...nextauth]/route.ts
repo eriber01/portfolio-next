@@ -1,7 +1,8 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { compare } from "bcrypt";
-import { GetProfile } from "./utils";
+import prisma from '@/libs/db';
+
 
 const handler = NextAuth({
   providers: [
@@ -20,8 +21,8 @@ const handler = NextAuth({
             throw new Error("Password is Required")
           }
 
-          // const profile = await prisma?.profile.findFirst({ where: { email: credentials?.email } })
-          const profile = await GetProfile(credentials?.email)
+          const profile = await prisma?.profile.findFirst({ where: { email: credentials?.email } })
+          // const profile = await GetProfile(credentials?.email)
           if (!profile) throw new Error("User not found. Only Eriber can enter in the Throne Room!!!");
 
           const match = await compare(credentials.password, profile.pass!)
