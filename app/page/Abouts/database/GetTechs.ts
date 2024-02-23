@@ -11,7 +11,7 @@ const onFilter = (techs: Techs[], area_type: 1 | 2 | 3) => {
 export async function GetTechsForAbout(): Promise<PropsInitialState> {
   try {
 
-    const techs = await prisma?.techs.findMany({ where: { OR: [{ show_type: 2 }, { show_type: 3 }] }, include: { image: true } }) as Techs[]
+    const techs = await prisma?.techs.findMany({ where: { OR: [{ show_type: 1 }, { show_type: 3 }] }, include: { image: true } }) as Techs[]
 
     const payload: PropsInitialState = {
       front: onFilter(techs, 1),
