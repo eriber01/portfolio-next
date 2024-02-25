@@ -11,7 +11,7 @@ interface GetProjectsProps {
 export async function GetProjects(): Promise<Projects[]> {
   try {
 
-    const { data } = await api.get<GetProjectsProps>('/projects')
+    const { data } = await api.get<GetProjectsProps>('/projects/enabled')
 
     if (data.status === 'success') {
       return data.projects
