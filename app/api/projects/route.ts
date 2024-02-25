@@ -147,7 +147,7 @@ export async function GET(_: Request) {
 
     return NextResponse.json({ message: '', status: 'success', projects })
   } catch (error) {
-    console.log(error);
+    console.log(error)
     return NextResponse.json({ message: 'Error get the Projects', status: 'fail', projects: [] })
 
   }
